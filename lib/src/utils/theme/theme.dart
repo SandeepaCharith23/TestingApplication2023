@@ -1,6 +1,5 @@
 import 'package:ecommerseapp2023/src/utils/theme/widget_themes/text_themse.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppTheme {
   //1.Using Material colour as a LightThemeData

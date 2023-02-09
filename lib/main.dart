@@ -1,4 +1,4 @@
-import 'package:ecommerseapp2023/loginPage.dart';
+import 'package:ecommerseapp2023/login_page.dart';
 import 'package:ecommerseapp2023/src/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: CustomAppTheme.lightThemeData,
       darkTheme: CustomAppTheme.darkThemeData,
       themeMode: ThemeMode.system,
-      home: const loginPage(),
+      home: const LoginPage(),
     );
   }
 }
