@@ -1,20 +1,38 @@
+import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextTheme {
-  static TextTheme lightTextTheme = const TextTheme(
-    headline5: TextStyle(
-      color: Colors.black54,
+  CustomTextTheme._(); //to avoid creating instance
+
+  static TextTheme lightTextTheme = TextTheme(
+    headline5: GoogleFonts.openSans(
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+      color: kprimaryColour,
     ),
-    subtitle1: TextStyle(
-      color: Colors.black54,
+    headline6: GoogleFonts.openSans(
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      color: kprimaryColour,
+    ),
+    subtitle1: const TextStyle(
+      color: kprimaryColour,
     ),
   );
 
-  static TextTheme darkTextTheme = const TextTheme(
-    headline5: TextStyle(
-      color: Colors.white,
+  static TextTheme darkTextTheme = TextTheme(
+    headline5: GoogleFonts.openSans(
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+      color: kprimaryColourInDark,
     ),
-    subtitle1: TextStyle(
+    headline6: GoogleFonts.openSans(
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      color: kprimaryColourInDark,
+    ),
+    subtitle1: const TextStyle(
       color: Colors.white,
     ),
   );

@@ -1,4 +1,4 @@
-import 'package:ecommerseapp2023/src/features/authentication/screens/onboarding_screen/onboarding_screen.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/welcome_screen/welcome_screen.dart';
 
 import 'package:get/get.dart';
 
@@ -21,6 +21,6 @@ class SplashControllerScreen extends GetxController {
     //     ));
 
     //Using GetX package to navigate
-    Get.to(const OnBoardingScreen());
+    Get.to(const WelcomeScreen());
   }
 }

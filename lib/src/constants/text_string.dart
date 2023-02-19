@@ -15,3 +15,11 @@ const String testOnboardingScreen3MainText = "Secure Connection";
 const String testOnboardingScreen3SubText =
     "Lets Start your journey with us on this app with secure Connection";
 const String testOnboardingScreen3count1 = "3/3";
+
+const String welcomeScreenText01 = "Discover Endless Shopping Possibilities";
+
+const String welcomeScreenText02 = "Welcome to Our E-commerce App!";
+
+const String signUp = "Sign Up";
+
+const String login = "Login";

@@ -16,9 +16,19 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaquery = MediaQuery.of(context);
+    // var height = mediaquery.size.height;
+
+    var brightness = mediaquery.platformBrightness;
+
+    final isDarkModeActivated = brightness == Brightness.dark;
+
     splashControllerScreen.startAnimation();
     return SafeArea(
       child: Scaffold(
+        backgroundColor: isDarkModeActivated
+            ? kBackgroundColorinDarkMode
+            : kBackgroundColorinLightMode,
         // backgroundColor: Colors.amber,
         body: Stack(
           children: [
@@ -48,17 +58,16 @@ class SplashScreen extends StatelessWidget {
                       Text(
                         testAppName,
                         style: GoogleFonts.lobster(
-                          textStyle: const TextStyle(
-                            fontSize: 35,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          textStyle: Theme.of(context).textTheme.headline5,
+                          fontSize: 35,
+                          // color: Colors.black,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         testAppTagLine,
                         style: GoogleFonts.aboreto(
-                          textStyle: Theme.of(context).textTheme.headline5,
+                          textStyle: Theme.of(context).textTheme.headline6,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 10,

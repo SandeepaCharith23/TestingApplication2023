@@ -1,4 +1,5 @@
 import 'package:ecommerseapp2023/src/features/authentication/screens/splash_screen/splash_screen.dart';
+
 import 'package:ecommerseapp2023/src/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,9 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      themeMode: ThemeMode.system,
       theme: CustomAppTheme.lightThemeData,
       darkTheme: CustomAppTheme.darkThemeData,
-      themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     );
   }
