@@ -18,8 +18,8 @@ const String testOnboardingScreen3count1 = "3/3";
 
 const String welcomeScreenText01 = "Discover Endless Shopping Possibilities";
 
-const String welcomeScreenText02 = "Welcome to Our E-commerce App!";
+const String welcomeScreenText02 = "ආයුබෝවන්";
 
-const String signUp = "Sign Up";
+const String signUp = "ගිණුමක් ආරම්භ කරන්න";
 
-const String login = "Login";
+const String login = "ගිණුමට පිවිසෙන්න";

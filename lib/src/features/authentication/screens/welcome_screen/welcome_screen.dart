@@ -1,5 +1,9 @@
+import 'package:ecommerseapp2023/src/common_Widgets/Animation_Widgets/fade_in_animation_design.dart';
+import 'package:ecommerseapp2023/src/common_Widgets/Animation_Widgets/fade_in_animation_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../../common_Widgets/Animation_Widgets/fade_in_animation_controller.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/image_path.dart';
 import '../../../../constants/sizes.dart';
@@ -16,63 +20,89 @@ class WelcomeScreen extends StatelessWidget {
     var brightness = mediaquery.platformBrightness;
 
     final isDarkModeActivated = brightness == Brightness.dark;
+
+    final controller = Get.put(FadeInAnimationController());
+    controller.startAnimation();
     return Scaffold(
       backgroundColor: isDarkModeActivated
           ? kBackgroundColorinDarkMode
           : kBackgroundColorinLightMode,
-      body: Padding(
-        padding: const EdgeInsets.all(kDefaultpaddingSize),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image(
-              image: const AssetImage(welcomeScreenImage1),
-              height: height * 0.6,
+      body: Stack(
+        children: [
+          TFadeInAnimation(
+            durationInMs: 1600,
+            animation: TAnimationPosition(
+              bottomAfter: 0,
+              bottomBefore: -100,
+              topAfter: 0,
+              topBefore: 0,
+              leftAfter: 0,
+              leftBefore: 0,
+              rightAfter: 0,
+              rightBefore: 0,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  welcomeScreenText01,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  welcomeScreenText02,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Text(
-                      login.toUpperCase(),
-                    ),
+            customChild: Container(
+              padding: const EdgeInsets.all(kDefaultpaddingSize),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image(
+                    image: const AssetImage(welcomeScreenImage1),
+                    height: height * 0.6,
                   ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      signUp.toUpperCase(),
-                    ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        welcomeScreenText01,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        welcomeScreenText02,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              login.toUpperCase(),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              signUp.toUpperCase(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
