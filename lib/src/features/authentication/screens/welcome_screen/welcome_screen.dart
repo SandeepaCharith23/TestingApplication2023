@@ -1,5 +1,7 @@
 import 'package:ecommerseapp2023/src/common_Widgets/Animation_Widgets/fade_in_animation_design.dart';
 import 'package:ecommerseapp2023/src/common_Widgets/Animation_Widgets/fade_in_animation_model.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/loging_screen/login_screen.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -73,7 +75,9 @@ class WelcomeScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => const LoginScreen());
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(
@@ -87,7 +91,9 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => const SignUpScreen());
+                          },
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(

@@ -20,6 +20,14 @@ const String welcomeScreenText01 = "Discover Endless Shopping Possibilities";
 
 const String welcomeScreenText02 = "ආයුබෝවන්";
 
+//Log in Screen
+const String signUpHeaderText01 = "Welcome Back ";
+const String signUpHeaderText02 = "Make it Work";
 const String signUp = "ගිණුමක් ආරම්භ කරන්න";
-
 const String login = "ගිණුමට පිවිසෙන්න";
+
+//Sign Up Screen
+
+const String sighUpScreenText01 = "Discover & Shopping ";
+const String sighUpScreenText02 =
+    "Shop smarter, not harder with our ecommerce app!";

@@ -79,6 +79,8 @@ flutter:
     - assets/images/
     - assets/images/Liquid_Swipe_Images/
     - assets/images/welcome_screen_images/
+    - assets/images/login_screen_images/
+    - assets/logo/
 
   #   - images/a_dot_ham.jpeg
 

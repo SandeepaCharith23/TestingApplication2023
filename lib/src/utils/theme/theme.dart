@@ -1,4 +1,5 @@
 import 'package:ecommerseapp2023/src/utils/theme/widget_themes/outlinedbutton_theme.dart';
+import 'package:ecommerseapp2023/src/utils/theme/widget_themes/text_field_theme.dart';
 import 'package:ecommerseapp2023/src/utils/theme/widget_themes/text_themse.dart';
 import 'package:flutter/material.dart';
 
@@ -49,11 +50,13 @@ class CustomAppTheme {
     brightness: Brightness.light,
     textTheme: CustomTextTheme.lightTextTheme,
     outlinedButtonTheme: OutLinedButtonTheme.lightOutLinedButtonTheme,
+    inputDecorationTheme: TextFormFieldTheme.lightInputDecorationTheme,
   );
 
   static ThemeData darkThemeData = ThemeData(
     brightness: Brightness.dark,
     textTheme: CustomTextTheme.darkTextTheme,
     outlinedButtonTheme: OutLinedButtonTheme.darkOutLinedButtonTheme,
+    inputDecorationTheme: TextFormFieldTheme.darkInputDecorationTheme,
   );
 }
