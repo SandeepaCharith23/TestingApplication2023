@@ -1,3 +1,5 @@
+import 'package:ecommerseapp2023/src/features/authentication/screens/forgetpassword_screen/forgetpassword_options/forgetpassword_model_bottom_sheet.dart';
+
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatelessWidget {
@@ -45,7 +47,11 @@ class LoginForm extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Get.to(() => const ForgetPasswordScreen());
+                  ForgetPasswordModelBottomSheet.buildShowModalBottomSheet(
+                      context);
+                },
                 child: const Text("Forget Password ?"),
               ),
             ),

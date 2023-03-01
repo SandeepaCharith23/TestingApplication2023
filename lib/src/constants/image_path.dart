@@ -19,3 +19,7 @@ const String sighUpScreenImage1 =
 const String loginScreenGooglelogo1 = "assets/logo/googleicon1.png";
 const String loginScreenGooglelogo2 = "assets/logo/googleicon2.png";
 const String googlelogopath = "assets/logo/googleicon2.png";
+
+//forget password screen images
+const String forgetpasswordScreenImage1 =
+    "assets/images/forget_password_images/forgetPasswordImage01.png";

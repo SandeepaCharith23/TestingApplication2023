@@ -1,7 +1,8 @@
 import 'package:ecommerseapp2023/src/common_Widgets/Form/form_header.dart';
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/constants/text_string.dart';
-import 'package:ecommerseapp2023/src/features/authentication/screens/signup_screen/widgets/signUpForm.dart';
+
+import 'package:ecommerseapp2023/src/features/authentication/screens/signup_screen/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/image_path.dart';
@@ -16,8 +17,7 @@ class SignUpScreen extends StatelessWidget {
     var brightness1 = mediaquery1.platformBrightness;
 
     final isDarkModeActivated1 = brightness1 == Brightness.dark;
-    var size = MediaQuery.of(context).size;
-    var height = size.height;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: isDarkModeActivated1
@@ -30,13 +30,14 @@ class SignUpScreen extends StatelessWidget {
               padding: const EdgeInsets.all(kDefaultpaddingSize),
               child: Column(
                 children: [
-                  FormHeader(
-                    height: height,
+                  const FormHeader(
+                    imageheightratio: 0.3,
                     imagepath: sighUpScreenImage1,
                     text1: sighUpScreenText01,
                     text2: sighUpScreenText02,
+                    heightbetween: 5,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                   ),
-
                   /////////////////
                   const SignUpScreenForm(),
 

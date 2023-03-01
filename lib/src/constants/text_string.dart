@@ -21,8 +21,8 @@ const String welcomeScreenText01 = "Discover Endless Shopping Possibilities";
 const String welcomeScreenText02 = "ආයුබෝවන්";
 
 //Log in Screen
-const String signUpHeaderText01 = "Welcome Back ";
-const String signUpHeaderText02 = "Make it Work";
+const String signUpHeaderText01 = "Welcome Back to Our E commerse App 2023";
+const String signUpHeaderText02 = "Make It work again 2023";
 const String signUp = "ගිණුමක් ආරම්භ කරන්න";
 const String login = "ගිණුමට පිවිසෙන්න";
 
@@ -31,3 +31,18 @@ const String login = "ගිණුමට පිවිසෙන්න";
 const String sighUpScreenText01 = "Discover & Shopping ";
 const String sighUpScreenText02 =
     "Shop smarter, not harder with our ecommerce app!";
+
+//forget password screen
+const String forgetPasswordScreenText01 =
+    "Can't remember your password? Let's reset it!";
+const String forgetPasswordScreenText02 =
+    "Please choose an option to reset your password.";
+const String forgetPasswordBanner1text01 = "Email";
+const String forgetPasswordBanner1text02 = "Reset password through your email";
+const String forgetPasswordBanner2text01 = "Mobile";
+const String forgetPasswordBanner2text02 =
+    "Reset password through your mobile OTP";
+const String forgetPasswordthroughMailtext01 =
+    "Reset password through your email";
+const String forgetPasswordthroughMailtext02 =
+    "Resetting a password through email is a commonly used method to help users regain access to their accounts when they forget their password. This process involves sending an email to the registered email address associated with the account, which contains a link to reset the password.";

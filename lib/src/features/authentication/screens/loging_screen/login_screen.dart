@@ -16,9 +16,6 @@ class LoginScreen extends StatelessWidget {
     var brightness1 = mediaquery1.platformBrightness;
 
     final isDarkModeActivated1 = brightness1 == Brightness.dark;
-    var size = MediaQuery.of(context).size;
-
-    var height = size.height;
 
     return SafeArea(
       child: Scaffold(
@@ -30,15 +27,17 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 FormHeader(
-                  height: height,
+                  imageheightratio: 0.3,
                   imagepath: loginScreenImage1,
                   text1: signUpHeaderText01,
                   text2: signUpHeaderText02,
+                  heightbetween: 5,
+                  textAlign: TextAlign.center,
                 ),
-                const LoginForm(),
-                const LoginFooterWidget(),
+                LoginForm(),
+                LoginFooterWidget(),
               ],
             ),
           ),

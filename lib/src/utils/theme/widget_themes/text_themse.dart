@@ -18,6 +18,8 @@ class CustomTextTheme {
     ),
     subtitle1: const TextStyle(
       color: kprimaryColour,
+      fontSize: 12.0,
+      fontWeight: FontWeight.normal,
     ),
   );
 
@@ -34,6 +36,8 @@ class CustomTextTheme {
     ),
     subtitle1: const TextStyle(
       color: Colors.white,
+      fontSize: 12.0,
+      fontWeight: FontWeight.normal,
     ),
   );
 }
