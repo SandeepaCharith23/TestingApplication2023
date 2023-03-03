@@ -47,7 +47,7 @@ class OTPScreen extends StatelessWidget {
               filled: true,
               cursorColor: Colors.black,
               onSubmit: (code) {
-                print("OTP is => $code");
+                //print("OTP is => $code");
               },
             ),
             const SizedBox(

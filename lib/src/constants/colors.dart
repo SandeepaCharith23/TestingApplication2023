@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 const Color kprimaryColour1 = Color(0xFF4532ED);
 const Color kprimaryColour = Colors.black;
 const Color kprimaryColourWhite = Colors.white;
+const Color ktextColourinLight = Colors.black;
+const Color ktextColourinDark = Colors.white;
 const Color kprimaryColourInDark = Color(0xFFF3F4F9);
 
 const Color kprimaryColourforBottomSheet = Colors.amberAccent;

@@ -54,3 +54,10 @@ const String forgetPasswordthroughOTPtext01 = "RE \n SET";
 const String forgetPasswordthroughOTPtext02 = "OTP verification";
 const String forgetPasswordthroughOTPtext03 =
     "Enter the verification code sent at your ";
+
+//Dashboard texts
+const String dashboardAppBarAppTitle = "Ecommerse 2023";
+const String dashboardIntroductionMainTitle =
+    "Welcome to our user-friendly shopping app!";
+const String dashboardIntroductionSubTitle =
+    "Get ready for a seamless shopping experience. Navigate your way around our app with ease.";

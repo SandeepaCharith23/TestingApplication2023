@@ -84,6 +84,7 @@ flutter:
     - assets/images/login_screen_images/
     - assets/logo/
     - assets/images/forget_password_images/
+    - assets/images/dashboard_screen_iamges/
 
   #   - images/a_dot_ham.jpeg
 

@@ -23,3 +23,15 @@ const String googlelogopath = "assets/logo/googleicon2.png";
 //forget password screen images
 const String forgetpasswordScreenImage1 =
     "assets/images/forget_password_images/forgetPasswordImage01.png";
+
+//Main dashboard images paths
+const String dashbaordScreenImages1 =
+    "assets/images/dashboard_screen_iamges/dashboardImages1 (2).png";
+const String dashbaordScreenImages2 =
+    "assets/images/dashboard_screen_iamges/dashboardImages1 (3).png";
+const String dashbaordScreenImages3 =
+    "assets/images/dashboard_screen_iamges/profileimage (1).png";
+const String dashbaordScreenShopBannerImage1 =
+    "assets/images/dashboard_screen_iamges/bookmark-icon64.png";
+const String dashbaordScreenShopBannerImage2 =
+    "assets/images/dashboard_screen_iamges/shopImage (3).png";

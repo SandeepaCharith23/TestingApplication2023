@@ -1,6 +1,6 @@
 import 'package:ecommerseapp2023/src/utils/theme/widget_themes/outlinedbutton_theme.dart';
 import 'package:ecommerseapp2023/src/utils/theme/widget_themes/text_field_theme.dart';
-import 'package:ecommerseapp2023/src/utils/theme/widget_themes/text_themse.dart';
+import 'package:ecommerseapp2023/src/utils/theme/widget_themes/text_thems.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppTheme {

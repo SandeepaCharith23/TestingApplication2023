@@ -1,6 +1,8 @@
+import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/forgetpassword_screen/forgetpassword_options/forgetpassword_model_bottom_sheet.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -58,7 +60,9 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const DashboardScreen());
+                },
                 child: const Text("Login"),
               ),
             ),
