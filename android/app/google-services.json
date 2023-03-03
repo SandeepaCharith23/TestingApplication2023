@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "579716367611",
+    "project_id": "ecommerseflutterapp2023",
+    "storage_bucket": "ecommerseflutterapp2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579716367611:android:e38ae1cb149e805a1edc5e",
+        "android_client_info": {
+          "package_name": "com.example.ecommerseapp2023"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579716367611-v3a21ofpqtttutr4ghu3d57ui2spq4vq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAyxjKWhjJT2b8WxdiyDK6ONNuMbxG5Lg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579716367611-v3a21ofpqtttutr4ghu3d57ui2spq4vq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "579716367611-vog9p8ce2a5ulika4q0t945kln4onp0v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecommerseapp2023"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
