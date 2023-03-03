@@ -1,6 +1,7 @@
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/constants/image_path.dart';
 import 'package:ecommerseapp2023/src/constants/text_string.dart';
+import 'package:ecommerseapp2023/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 
 class DashBoardAppBar extends StatelessWidget implements PreferredSize {
@@ -33,7 +34,9 @@ class DashBoardAppBar extends StatelessWidget implements PreferredSize {
             color: kprimaryColourInDark,
           ),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              AuthenticationRepository.instance.logout();
+            },
             icon: const Image(
               image: AssetImage(dashbaordScreenImages3),
               width: 50,

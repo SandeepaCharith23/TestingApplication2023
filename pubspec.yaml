@@ -43,6 +43,7 @@ dependencies:
   dependencies:
   flutter_otp_text_field: ^1.1.1
   firebase_core: ^2.7.0
+  firebase_auth: ^4.2.9
 
 dev_dependencies:
   flutter_test:
