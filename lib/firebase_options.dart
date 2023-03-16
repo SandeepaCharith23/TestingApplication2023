@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '579716367611',
     projectId: 'ecommerseflutterapp2023',
     storageBucket: 'ecommerseflutterapp2023.appspot.com',
+    androidClientId: '579716367611-108kntsnc3vufmh4hv9q3i3s0qfn8p7c.apps.googleusercontent.com',
     iosClientId: '579716367611-vog9p8ce2a5ulika4q0t945kln4onp0v.apps.googleusercontent.com',
     iosBundleId: 'com.example.ecommerseapp2023',
   );

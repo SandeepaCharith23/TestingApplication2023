@@ -1,14 +1,16 @@
 class SignUpwithEmailAndPasswordFailures {
   final String errormsg;
 
+  //constructor
   const SignUpwithEmailAndPasswordFailures(
       [this.errormsg = "An Unknown Error occured."]);
 
   factory SignUpwithEmailAndPasswordFailures.code(String code) {
+    //return error msg form switch statement
     switch (code) {
       case 'weak-password':
         return const SignUpwithEmailAndPasswordFailures(
-            'Please enter a stronger pass word');
+            'Please enter a stronger password');
       case 'invalid-email':
         return const SignUpwithEmailAndPasswordFailures(
             'Email is not valid or badly formatted');

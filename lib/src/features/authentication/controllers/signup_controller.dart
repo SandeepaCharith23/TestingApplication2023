@@ -14,7 +14,18 @@ class SignUpController extends GetxController {
 
   //create a function -which call at UI
   void registerNewUser(String email, String password) {
-    AuthenticationRepository.instance
-        .createUserWithEmailandPassword(email, password);
+    //use the method which create in Authentication Repo
+    String? error = AuthenticationRepository.instance
+        .createUserWithEmailandPassword(email, password) as String?;
+    if (error != null) {
+      Get.showSnackbar(GetSnackBar(
+        message: error.toString(),
+      ));
+    }
+  }
+
+  void registerNewUserfromPhoneAuthentication(String phonenumber) {
+    //use the method which create in Authentication Repo
+    AuthenticationRepository.instance.phoneAuthentication(phonenumber);
   }
 }
