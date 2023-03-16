@@ -36,6 +36,11 @@ class CustomTextTheme {
       fontWeight: FontWeight.normal,
       color: ktextColourinLight,
     ),
+    bodyText2: GoogleFonts.openSans(
+      fontSize: 16.0,
+      fontWeight: FontWeight.normal,
+      color: ktextColourinLight,
+    ),
   );
 
   static TextTheme darkTextTheme = TextTheme(
@@ -66,6 +71,11 @@ class CustomTextTheme {
     ),
     bodyText1: GoogleFonts.openSans(
       fontSize: 12.0,
+      fontWeight: FontWeight.normal,
+      color: ktextColourinDark,
+    ),
+    bodyText2: GoogleFonts.openSans(
+      fontSize: 16.0,
       fontWeight: FontWeight.normal,
       color: ktextColourinDark,
     ),

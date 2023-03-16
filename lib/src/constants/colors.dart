@@ -17,3 +17,7 @@ const Color kBackgroundColorinDarkMode = Colors.black;
 const Color kLiquidSwipeColour1 = Color(0x008DD5BD);
 const Color kLiquidSwipeColour2 = Color(0x0037D29E);
 const Color kLiquidSwipeColour3 = Color(0x00067C54);
+
+const Color kbackgroundblueColor1 = Color(0x00F3F4F9);
+const Color kbackgroundblueColor2 = Color(0x00B2BDF5);
+const Color kbackgroundblueColor3 = Color(0x002645E3);

@@ -1,8 +1,10 @@
 import 'package:ecommerseapp2023/src/constants/colors.dart';
-import 'package:ecommerseapp2023/src/constants/image_path.dart';
+
 import 'package:ecommerseapp2023/src/constants/text_string.dart';
-import 'package:ecommerseapp2023/src/repository/authentication_repository/authentication_repository.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class DashBoardAppBar extends StatelessWidget implements PreferredSize {
   const DashBoardAppBar({
@@ -35,12 +37,17 @@ class DashBoardAppBar extends StatelessWidget implements PreferredSize {
           ),
           child: IconButton(
             onPressed: () {
-              AuthenticationRepository.instance.logout();
+              Get.to(() => const ProfileScreen());
             },
-            icon: const Image(
-              image: AssetImage(dashbaordScreenImages3),
-              width: 50,
-              height: 50,
+            // icon: const Image(
+            //   image: AssetImage(dashbaordScreenImages3),
+            //   width: 50,
+            //   height: 50,
+            // ),
+
+            icon: const Icon(
+              LineAwesomeIcons.users_cog,
+              color: kprimaryColour,
             ),
           ),
         ),

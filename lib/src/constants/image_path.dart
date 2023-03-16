@@ -35,3 +35,6 @@ const String dashbaordScreenShopBannerImage1 =
     "assets/images/dashboard_screen_iamges/bookmark-icon64.png";
 const String dashbaordScreenShopBannerImage2 =
     "assets/images/dashboard_screen_iamges/shopImage (3).png";
+
+const String profileImage =
+    "assets/images/proflie_screen_images/profile_image.jpg";
