@@ -39,7 +39,7 @@ class MenuListTile extends StatelessWidget {
       ),
       title: Text(
         textMain,
-        style: Theme.of(context).textTheme.bodyText2?.apply(color: textColor),
+        style: Theme.of(context).textTheme.bodyMedium?.apply(color: textColor),
       ),
       trailing: endIcon
           ? IconButton(

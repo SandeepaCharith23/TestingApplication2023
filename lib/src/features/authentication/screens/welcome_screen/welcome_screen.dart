@@ -58,7 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                       Text(
                         welcomeScreenText01,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline5,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       const SizedBox(
                         height: 10,
@@ -66,7 +66,7 @@ class WelcomeScreen extends StatelessWidget {
                       Text(
                         welcomeScreenText02,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ],
                   ),

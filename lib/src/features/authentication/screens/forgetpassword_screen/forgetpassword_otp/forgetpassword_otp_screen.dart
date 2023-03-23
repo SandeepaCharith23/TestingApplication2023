@@ -34,7 +34,7 @@ class OTPScreen extends StatelessWidget {
                 )),
             Text(
               forgetPasswordthroughOTPtext02.toUpperCase(),
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: 20,

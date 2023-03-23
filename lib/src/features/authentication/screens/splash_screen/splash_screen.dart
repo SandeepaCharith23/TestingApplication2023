@@ -68,7 +68,7 @@ class SplashScreen extends StatelessWidget {
                   Text(
                     testAppName,
                     style: GoogleFonts.lobster(
-                      textStyle: Theme.of(context).textTheme.headline5,
+                      textStyle: Theme.of(context).textTheme.headlineSmall,
                       fontSize: 35,
                       // color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -79,7 +79,7 @@ class SplashScreen extends StatelessWidget {
                   Text(
                     testAppTagLine,
                     style: GoogleFonts.aboreto(
-                      textStyle: Theme.of(context).textTheme.headline6,
+                      textStyle: Theme.of(context).textTheme.titleLarge,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 10,

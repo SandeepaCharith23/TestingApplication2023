@@ -34,7 +34,7 @@ class DashBoardCategories extends StatelessWidget {
                       list[index].title,
                       style: Theme.of(context)
                           .textTheme
-                          .headline6
+                          .titleLarge
                           ?.apply(color: Colors.white),
                     ),
                   ),
@@ -49,12 +49,12 @@ class DashBoardCategories extends StatelessWidget {
                     children: [
                       Text(
                         list[index].heading,
-                        style: Theme.of(context).textTheme.subtitle1,
+                        style: Theme.of(context).textTheme.titleMedium,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         list[index].subHeading,
-                        style: Theme.of(context).textTheme.subtitle1,
+                        style: Theme.of(context).textTheme.titleMedium,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],

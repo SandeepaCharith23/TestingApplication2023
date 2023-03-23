@@ -38,11 +38,11 @@ class ForgetPasswordBanner extends StatelessWidget {
               children: [
                 Text(
                   forgetPasswordBanner1text01,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 Text(
                   forgetPasswordBanner1text02,
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
             ),

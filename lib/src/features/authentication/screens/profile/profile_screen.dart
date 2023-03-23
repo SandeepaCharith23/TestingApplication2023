@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         title: Text(
           "Profile",
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         actions: [
           IconButton(
@@ -73,11 +73,11 @@ class ProfileScreen extends StatelessWidget {
               ),
               Text(
                 "User Name",
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
               Text(
                 "User Email",
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(
                 height: 10,

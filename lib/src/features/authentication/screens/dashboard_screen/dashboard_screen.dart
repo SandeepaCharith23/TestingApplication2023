@@ -53,7 +53,7 @@ class DashboardScreen extends StatelessWidget {
                 "Top Products",
                 style: Theme.of(context)
                     .textTheme
-                    .headline6
+                    .titleLarge
                     ?.apply(fontSizeFactor: 1.6),
               ),
               const DashBoardTopProducts(),

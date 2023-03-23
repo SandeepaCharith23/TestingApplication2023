@@ -23,7 +23,7 @@ class UpdateProfileScreen extends StatelessWidget {
         ),
         title: Text(
           "Upadate Profile Details",
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         actions: [
           IconButton(
