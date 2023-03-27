@@ -52,13 +52,13 @@ class DashBoardBanners extends StatelessWidget {
                 ),
                 Text(
                   "Shop ABC",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
                   "City,Town ,Province",
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -109,13 +109,13 @@ class DashBoardBanners extends StatelessWidget {
                     ),
                     Text(
                       "Shop ABC",
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       "City,Town ,Province",
-                      style: Theme.of(context).textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyLarge,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

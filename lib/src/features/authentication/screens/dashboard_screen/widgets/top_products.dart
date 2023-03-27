@@ -36,7 +36,7 @@ class DashBoardTopProducts extends StatelessWidget {
                         Flexible(
                           child: Text(
                             "ABC Shop",
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -63,12 +63,12 @@ class DashBoardTopProducts extends StatelessWidget {
                           children: [
                             Text(
                               "Available area",
-                              style: Theme.of(context).textTheme.headline6,
+                              style: Theme.of(context).textTheme.titleLarge,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
                               "Available area",
-                              style: Theme.of(context).textTheme.headline6,
+                              style: Theme.of(context).textTheme.titleLarge,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],
@@ -101,7 +101,7 @@ class DashBoardTopProducts extends StatelessWidget {
                         Flexible(
                           child: Text(
                             "ABC Shop",
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -128,12 +128,12 @@ class DashBoardTopProducts extends StatelessWidget {
                           children: [
                             Text(
                               "Available area",
-                              style: Theme.of(context).textTheme.headline6,
+                              style: Theme.of(context).textTheme.titleLarge,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
                               "Available area",
-                              style: Theme.of(context).textTheme.headline6,
+                              style: Theme.of(context).textTheme.titleLarge,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],
@@ -166,7 +166,7 @@ class DashBoardTopProducts extends StatelessWidget {
                         Flexible(
                           child: Text(
                             "ABC Shop",
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -193,12 +193,12 @@ class DashBoardTopProducts extends StatelessWidget {
                           children: [
                             Text(
                               "Available area",
-                              style: Theme.of(context).textTheme.headline6,
+                              style: Theme.of(context).textTheme.titleLarge,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
                               "Available area",
-                              style: Theme.of(context).textTheme.headline6,
+                              style: Theme.of(context).textTheme.titleLarge,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ],

@@ -42,6 +42,13 @@ dependencies:
   smooth_page_indicator: ^1.0.1
   dependencies:
   flutter_otp_text_field: ^1.1.1
+  firebase_core: ^2.7.0
+  firebase_auth: ^4.2.9
+  line_awesome_flutter: ^2.0.0
+  cloud_firestore: ^4.4.5
+  intl_phone_number_input: ^0.7.2
+  phone_number: ^1.0.0
+  libphonenumber: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -85,6 +92,7 @@ flutter:
     - assets/logo/
     - assets/images/forget_password_images/
     - assets/images/dashboard_screen_iamges/
+    - assets/images/proflie_screen_images/
 
   #   - images/a_dot_ham.jpeg
 

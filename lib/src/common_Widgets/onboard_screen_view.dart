@@ -38,7 +38,7 @@ class OnBoardScreenWidget extends StatelessWidget {
                 Text(
                   mainText,
                   style: GoogleFonts.robotoCondensed(
-                    textStyle: Theme.of(context).textTheme.headline5,
+                    textStyle: Theme.of(context).textTheme.headlineSmall,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -46,7 +46,7 @@ class OnBoardScreenWidget extends StatelessWidget {
                   subText,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.robotoCondensed(
-                    textStyle: Theme.of(context).textTheme.headline6,
+                    textStyle: Theme.of(context).textTheme.titleLarge,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
@@ -58,7 +58,7 @@ class OnBoardScreenWidget extends StatelessWidget {
             count,
             textAlign: TextAlign.center,
             style: GoogleFonts.robotoCondensed(
-              textStyle: Theme.of(context).textTheme.headline5,
+              textStyle: Theme.of(context).textTheme.headlineSmall,
               fontWeight: FontWeight.bold,
             ),
           ),

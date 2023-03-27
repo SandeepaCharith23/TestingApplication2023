@@ -61,3 +61,11 @@ const String dashboardIntroductionMainTitle =
     "Welcome to our user-friendly shopping app!";
 const String dashboardIntroductionSubTitle =
     "Get ready for a seamless shopping experience. Navigate your way around our app with ease.";
+
+//string use in user repository
+const String titleUserAccountSuccessfullycreated = "Success";
+const String messageUserAccountSuccessfullycreated =
+    "Your account has been created successfully";
+const String titleUserAccountFailed = "Success";
+const String messageUserAccountFailed =
+    "Something went wrong ,Please Try again Later";

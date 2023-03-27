@@ -34,7 +34,7 @@ class FormHeader extends StatelessWidget {
         ),
         Text(
           text1,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
           textAlign: textAlign,
         ),
         SizedBox(
@@ -42,7 +42,7 @@ class FormHeader extends StatelessWidget {
         ),
         Text(
           text2,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
           textAlign: textAlign,
         ),
       ],

@@ -21,7 +21,7 @@ class DashBoardSearch extends StatelessWidget {
               "SEARCH...",
               style: Theme.of(context)
                   .textTheme
-                  .headline6
+                  .titleLarge
                   ?.apply(color: Colors.grey),
             ),
             const Icon(

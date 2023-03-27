@@ -21,14 +21,14 @@ class ForgetPasswordModelBottomSheet {
           children: [
             Text(
               forgetPasswordScreenText01,
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(
               height: 10,
             ),
             Text(
               forgetPasswordScreenText02,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: 10,

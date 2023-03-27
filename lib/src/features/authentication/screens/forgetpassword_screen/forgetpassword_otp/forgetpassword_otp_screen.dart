@@ -1,8 +1,10 @@
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
 import 'package:ecommerseapp2023/src/constants/text_string.dart';
+import 'package:ecommerseapp2023/src/features/authentication/controllers/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OTPScreen extends StatelessWidget {
@@ -10,6 +12,9 @@ class OTPScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(OTPController());
+    // ignore: prefer_typing_uninitialized_variables
+    var otp;
     var mediaquery1 = MediaQuery.of(context);
     var brightness1 = mediaquery1.platformBrightness;
     final isDarkModeActivated1 = brightness1 == Brightness.dark;
@@ -29,7 +34,7 @@ class OTPScreen extends StatelessWidget {
                 )),
             Text(
               forgetPasswordthroughOTPtext02.toUpperCase(),
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: 20,
@@ -48,6 +53,9 @@ class OTPScreen extends StatelessWidget {
               cursorColor: Colors.black,
               onSubmit: (code) {
                 //print("OTP is => $code");
+
+                otp = code;
+                OTPController.instance.verifyOTP(otp);
               },
             ),
             const SizedBox(
@@ -56,7 +64,9 @@ class OTPScreen extends StatelessWidget {
             SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    OTPController.instance.verifyOTP(otp);
+                  },
                   child: const Text("Next"),
                 ))
           ],
