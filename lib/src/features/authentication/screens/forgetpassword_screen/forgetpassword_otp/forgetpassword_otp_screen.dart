@@ -40,7 +40,7 @@ class OTPScreen extends StatelessWidget {
               height: 20,
             ),
             const Text(
-              "$forgetPasswordthroughOTPtext03 abc@gmail.com",
+              "$forgetPasswordthroughOTPtext03 +94******** ",
               textAlign: TextAlign.center,
             ),
             const SizedBox(

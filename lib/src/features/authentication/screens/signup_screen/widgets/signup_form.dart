@@ -3,6 +3,7 @@ import 'package:ecommerseapp2023/src/features/authentication/models/user_model.d
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class SignUpScreenForm extends StatefulWidget {
   const SignUpScreenForm({
@@ -15,7 +16,7 @@ class SignUpScreenForm extends StatefulWidget {
 
 class _SignUpScreenFormState extends State<SignUpScreenForm> {
   String initialCountry = 'LK';
-  late final String number;
+  PhoneNumber number = PhoneNumber(isoCode: 'LK');
 
   @override
   Widget build(BuildContext context) {
@@ -81,55 +82,55 @@ class _SignUpScreenFormState extends State<SignUpScreenForm> {
               height: 10,
             ),
             //3.Mobile Phone TextField
-            TextFormField(
-              //4.Assign Controllers to every TextForm Filed
-              controller: controller.phoneNumberController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter Your Mobile Phone Number';
-                }
-                if (!RegExp(r'^\+?\d{10}$').hasMatch(value)) {
-                  return 'Please enter a valid mobile phone number of 10 ';
-                }
+            // TextFormField(
+            //   //4.Assign Controllers to every TextForm Filed
+            //   controller: controller.phoneNumberController,
+            //   validator: (value) {
+            //     if (value == null || value.isEmpty) {
+            //       return 'Please enter Your Mobile Phone Number';
+            //     }
+            //     if (!RegExp(r'^\+?\d{11}$').hasMatch(value)) {
+            //       return 'Please enter a valid mobile phone number of 11 with +94 ';
+            //     }
 
-                return null;
-              },
-              decoration: const InputDecoration(
-                prefixIcon: Icon(
-                  Icons.phone_android_rounded,
-                ),
-                labelText: "Phone Number",
-                hintText: "Enter Your Phone Number",
-                border: OutlineInputBorder(),
-              ),
-            ),
+            //     return null;
+            //   },
+            //   decoration: const InputDecoration(
+            //     prefixIcon: Icon(
+            //       Icons.phone_android_rounded,
+            //     ),
+            //     labelText: "Phone Number",
+            //     hintText: "Enter Your Phone Number",
+            //     border: OutlineInputBorder(),
+            //   ),
+            // ),
             const SizedBox(
               height: 10,
             ),
+
             //3.Mobile Phone TextField
-            // InternationalPhoneNumberInput(
-            //   onInputChanged: (PhoneNumber number) {
-            //     getPhoneNumber(number as String);
-            //   },
-            //   onInputValidated: (bool value) {
-            //     // print(value);
-            //   },
-            //   selectorConfig: const SelectorConfig(
-            //     selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-            //   ),
-            //   ignoreBlank: false,
-            //   autoValidateMode: AutovalidateMode.disabled,
-            //   selectorTextStyle: const TextStyle(color: Colors.black),
-            //   initialValue: number,
-            //   textFieldController: controller.phoneNumberController,
-            //   formatInput: true,
-            //   keyboardType: const TextInputType.numberWithOptions(
-            //       signed: true, decimal: true),
-            //   inputBorder: const OutlineInputBorder(),
-            //   onSaved: (PhoneNumber number) {
-            //     print('On Saved: $number');
-            //   },
-            // ),
+            InternationalPhoneNumberInput(
+              onInputChanged: (PhoneNumber value) {
+                // print(value);
+              },
+              onInputValidated: (bool value) {
+                // print(value);
+              },
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+              ),
+              ignoreBlank: false,
+              autoValidateMode: AutovalidateMode.disabled,
+              selectorTextStyle: const TextStyle(color: Colors.black),
+              initialValue: number,
+              textFieldController: controller.phoneNumberController,
+              formatInput: true,
+              keyboardType: TextInputType.phone,
+              inputBorder: const OutlineInputBorder(),
+              onSaved: (PhoneNumber number) {
+                print('On Saved: $number');
+              },
+            ),
 
             //////////////////////////
             const SizedBox(
@@ -224,14 +225,13 @@ class _SignUpScreenFormState extends State<SignUpScreenForm> {
                     //         controller.phoneNumberController.text.trim());
 
                     //4.format number
-                    // Future<String> phonenumber = formatPhoneNumber(
-                    //     controller.phoneNumberController.text.trim(), 'LK');
+                    getPhoneNumber(number);
 
                     //3.create a User Model and pass it to controller
                     final usermodel = UserModel(
                       firstName: controller.firstNameController.text.trim(),
                       emailAddress: controller.emailController.text.trim(),
-                      phoneNumber: controller.phoneNumberController.text.trim(),
+                      phoneNumber: number.toString(),
                       passWord: controller.passwordController.text.trim(),
                       district: controller.districtName.text.trim(),
                       province: controller.districtName.text.trim(),
@@ -253,14 +253,14 @@ class _SignUpScreenFormState extends State<SignUpScreenForm> {
   }
 
   //This method is used in InternationalPhoneNumberInput
-  // void getPhoneNumber(String phoneNumber) async {
-  //   PhoneNumber number =
-  //       await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'US');
+  void getPhoneNumber(PhoneNumber phoneNumber) async {
+    PhoneNumber number1 = await PhoneNumber.getRegionInfoFromPhoneNumber(
+        phoneNumber as String, 'LK');
 
-  //   setState(() {
-  //     this.number = number;
-  //   });
-  // }
+    setState(() {
+      number = number1;
+    });
+  }
 
   // Future<String> formatPhoneNumber(String phoneNumber, String isoCode) {
   //   final phoneNumberUtil = PhoneNumberUtil();

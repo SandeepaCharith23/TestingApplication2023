@@ -1,6 +1,7 @@
 import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';
 import 'package:ecommerseapp2023/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:ecommerseapp2023/src/repository/user_repository/user_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -21,12 +22,12 @@ class SignUpController extends GetxController {
   //create a function -which call at UI
   void registerNewUserFromUsernameandPassword(String email, String password) {
     //use the method which create in Authentication Repo
-    String? error = AuthenticationRepository.instance
-        .createUserWithEmailandPassword(email, password) as String?;
-    if (error != null) {
-      Get.showSnackbar(GetSnackBar(
-        message: error.toString(),
-      ));
+
+    try {
+      AuthenticationRepository.instance
+          .createUserWithEmailandPassword(email, password);
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar("Error", e.message.toString());
     }
   }
 

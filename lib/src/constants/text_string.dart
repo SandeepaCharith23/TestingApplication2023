@@ -50,8 +50,8 @@ const String forgetPasswordthroughMailtext02 =
     "Resetting a password through email is a commonly used method to help users regain access to their accounts when they forget their password. This process involves sending an email to the registered email address associated with the account, which contains a link to reset the password.";
 
 //Forget password reset using OTP
-const String forgetPasswordthroughOTPtext01 = "RE \n SET";
-const String forgetPasswordthroughOTPtext02 = "OTP verification";
+const String forgetPasswordthroughOTPtext01 = "VERIFY \n OTP";
+const String forgetPasswordthroughOTPtext02 = "OTP-verification";
 const String forgetPasswordthroughOTPtext03 =
     "Enter the verification code sent at your ";
 
