@@ -43,6 +43,9 @@ class SignUpScreen extends StatelessWidget {
 
                   Column(
                     children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
                       const Text("OR"),
                       SizedBox(
                         width: double.infinity,

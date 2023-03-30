@@ -19,30 +19,48 @@ class SignUpController extends GetxController {
   final provinceName = TextEditingController();
   final districtName = TextEditingController();
 
-  //create a function -which call at UI
+  final userRepository = Get.put(UserRepository());
+
+  Future<void> createnewUserWithPhoneAuthentication(UserModel userModel) async {
+    //1.use the method which create in Authentication Repo
+    await userRepository.createUser(userModel);
+
+    //2.veify phone number and signIn with phone Number
+    registerNewUserfromPhoneAuthentication(userModel);
+
+    //4.forward to OTP Screen
+    Get.to(() => const OTPScreen());
+  }
+
+  /////////////////////////////////////////////////////////////
+
+  Future<void> createnewUserWithEmailandPasswordAuthentication(
+      UserModel userModel) async {
+    //1.use the method which create in Authentication Repo
+    await userRepository.createUser(userModel);
+
+    //2.create a new user using emai and password
+    registerNewUserFromUsernameandPassword(
+        userModel.emailAddress, userModel.passWord);
+  }
+
+  ////////////////////////////////////////////////////////////////
+
+  void registerNewUserfromPhoneAuthentication(UserModel userModel) {
+    //use the method which create in Authentication Repo+verify phone number
+    AuthenticationRepository.instance
+        .phoneAuthentication(userModel.phoneNumber);
+  }
+
+  //////////////////////////////////////////////////////////////////////
+
   void registerNewUserFromUsernameandPassword(String email, String password) {
     //use the method which create in Authentication Repo
-
     try {
       AuthenticationRepository.instance
           .createUserWithEmailandPassword(email, password);
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error", e.message.toString());
     }
-  }
-
-  final userRepository = Get.put(UserRepository());
-
-  Future<void> createnewUser(UserModel userModel) async {
-    //use the method which create in Authentication Repo
-    await userRepository.createUser(userModel);
-    registerNewUserfromPhoneAuthentication(userModel.phoneNumber);
-    //registerNewUserFromUsernameandPassword(userModel.emailAddress, userModel.passWord);
-    Get.to(() => const OTPScreen());
-  }
-
-  void registerNewUserfromPhoneAuthentication(String phonenumber) {
-    //use the method which create in Authentication Repo
-    AuthenticationRepository.instance.phoneAuthentication(phonenumber);
   }
 }

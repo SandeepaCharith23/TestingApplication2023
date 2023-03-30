@@ -74,12 +74,17 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> logout() async => await _auth.signOut();
 
-  //funtion -OTP verification
+  //funtion -OTP verification and send it to create a new user
   Future<void> phoneAuthentication(String phonenumber) async {
+    //1.Verify phone number through OTP msg
     await _auth.verifyPhoneNumber(
       phoneNumber: phonenumber,
+
+      //2.create a new user using credentials or show up a message
       verificationCompleted: (credentials) async {
         await _auth.signInWithCredential(credentials);
+
+        Get.snackbar("signIn Method", "SuccessFully sign With Phone Number");
       },
       codeSent: (verificationId, resendToken) {
         this.verificationId.value = verificationId;
