@@ -41,12 +41,28 @@ class UpdateProfileScreen extends StatelessWidget {
         child: FutureBuilder(
           //pass the profile controller class-getUserData method
           future: profilecontroller.getUserData(),
+
           builder: (context, snapshot) {
             //First check that snapshot fetch process is Finished
             if (snapshot.connectionState == ConnectionState.done) {
               //secondly check that snapshot has Data
               if (snapshot.hasData) {
                 UserModel userModeldata = snapshot.data as UserModel;
+
+                //test editing controllers
+                final firstNameController =
+                    TextEditingController(text: userModeldata.firstName);
+                final emailAddressController =
+                    TextEditingController(text: userModeldata.emailAddress);
+                final locationProvinceController =
+                    TextEditingController(text: userModeldata.province);
+                final locationDistrictController =
+                    TextEditingController(text: userModeldata.district);
+                final mobilePhoneController =
+                    TextEditingController(text: userModeldata.phoneNumber);
+                final passwordController =
+                    TextEditingController(text: userModeldata.passWord);
+
                 //load all data to display
                 return Padding(
                   padding: const EdgeInsets.all(kDefaultpaddingSize),
@@ -87,7 +103,8 @@ class UpdateProfileScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             TextFormField(
-                              initialValue: userModeldata.firstName,
+                              controller: firstNameController,
+                              //initialValue: userModeldata.firstName,
                               decoration: const InputDecoration(
                                 hintText: "Enter your First Name",
                                 label: Text("First Name"),
@@ -98,7 +115,8 @@ class UpdateProfileScreen extends StatelessWidget {
                               height: 10,
                             ),
                             TextFormField(
-                              initialValue: userModeldata.emailAddress,
+                              //initialValue: userModeldata.emailAddress,
+                              controller: emailAddressController,
                               decoration: const InputDecoration(
                                 hintText: "Enter your email address",
                                 label: Text("Email address"),
@@ -109,7 +127,8 @@ class UpdateProfileScreen extends StatelessWidget {
                               height: 10,
                             ),
                             TextFormField(
-                              initialValue: userModeldata.province,
+                              //initialValue: userModeldata.province,
+                              controller: locationProvinceController,
                               decoration: const InputDecoration(
                                 hintText: "Select your Location-Province",
                                 label: Text("Location-Province"),
@@ -120,7 +139,8 @@ class UpdateProfileScreen extends StatelessWidget {
                               height: 10,
                             ),
                             TextFormField(
-                              initialValue: userModeldata.district,
+                              //initialValue: userModeldata.district,
+                              controller: locationDistrictController,
                               decoration: const InputDecoration(
                                 hintText: "Select your Location-District",
                                 label: Text("Location-District"),
@@ -131,7 +151,8 @@ class UpdateProfileScreen extends StatelessWidget {
                               height: 10,
                             ),
                             TextFormField(
-                              initialValue: userModeldata.phoneNumber,
+                              //initialValue: userModeldata.phoneNumber,
+                              controller: mobilePhoneController,
                               decoration: const InputDecoration(
                                 hintText: "Enter your Mobile phone Number",
                                 label: Text("Mobile Number"),
@@ -142,7 +163,8 @@ class UpdateProfileScreen extends StatelessWidget {
                               height: 10,
                             ),
                             TextFormField(
-                              initialValue: userModeldata.passWord,
+                              //initialValue: userModeldata.passWord,
+                              controller: passwordController,
                               decoration: const InputDecoration(
                                 hintText: "Enter a suitable password",
                                 label: Text("Password"),
@@ -155,15 +177,33 @@ class UpdateProfileScreen extends StatelessWidget {
                             SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () {
-                                  //Get.to(() => const UpdateProfileScreen());
+                                onPressed: () async {
+                                  //create a Data model
+                                  final userDataTree = UserModel(
+                                    firstName: firstNameController.text.trim(),
+                                    emailAddress:
+                                        emailAddressController.text.trim(),
+                                    phoneNumber:
+                                        mobilePhoneController.text.trim(),
+                                    passWord: passwordController.text.trim(),
+                                    district:
+                                        locationDistrictController.text.trim(),
+                                    province:
+                                        locationProvinceController.text.trim(),
+                                  );
+
+                                  //update user records using Data Tree
+                                  await profilecontroller
+                                      .updateUserRecord(userDataTree);
+                                  Get.snackbar("Update Succeess",
+                                      "Update Process is successful");
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: kprimaryColour1,
                                   side: BorderSide.none,
                                   shape: const StadiumBorder(),
                                 ),
-                                child: const Text("Edit profile"),
+                                child: const Text("Update profile"),
                               ),
                             ),
                             const SizedBox(

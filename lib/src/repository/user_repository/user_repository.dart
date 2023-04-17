@@ -61,4 +61,12 @@ class UserRepository extends GetxController {
         datasnapshotsuser.docs.map((e) => UserModel.fromSnapShot(e)).toList();
     return multipleuserData;
   }
+
+  //create a method to update user details after user change own information
+  Future<void> updateUserDetails(UserModel userModel) async {
+    await _dbinstance
+        .collection("User")
+        .doc(userModel.userId)
+        .update(userModel.toJson());
+  }
 }

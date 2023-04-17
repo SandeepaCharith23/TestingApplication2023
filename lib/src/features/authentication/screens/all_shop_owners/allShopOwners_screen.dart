@@ -3,8 +3,7 @@ import 'package:ecommerseapp2023/src/features/authentication/controllers/profile
 import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 

@@ -29,4 +29,9 @@ class ProfileController extends GetxController {
   Future<List<UserModel>> getAllUser() async {
     return await _userRepo.getMultipleUserDetails();
   }
+
+  //create a method for update user Details
+  updateUserRecord(UserModel usermodel) async {
+    await _userRepo.updateUserDetails(usermodel);
+  }
 }
