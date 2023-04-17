@@ -5,11 +5,16 @@ import 'package:ecommerseapp2023/src/features/authentication/screens/forgetpassw
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   const LoginForm({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final controllers = Get.put(SignInController());
@@ -22,6 +27,7 @@ class LoginForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20.0),
         child: Column(
           children: [
+            //Email Address field
             TextFormField(
               controller: controllers.firstNameController,
               decoration: const InputDecoration(
@@ -46,39 +52,9 @@ class LoginForm extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            TextFormField(
-              controller: controllers.passwordController,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(
-                  Icons.password_outlined,
-                ),
-                labelText: "Password",
-                hintText: "Enter Your Password",
-                border: const OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.remove_red_eye_outlined),
-                ),
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter Your Password';
-                }
-                if (value.length < 8) {
-                  return 'Password must be at least 8 characters long';
-                }
-                // if (!RegExp(r'[a-zA-Z]').hasMatch(value)) {
-                //   return 'Password must contain at least one letter';
-                // }
-                // if (!RegExp(r'[0-9]').hasMatch(value)) {
-                //   return 'Password must contain at least one number';
-                // }
-                // if (!RegExp(r'[!@#\$&*~]').hasMatch(value)) {
-                //   return 'Password must contain at least one special character';
-                // }
-                return null;
-              },
-            ),
+
+            //Password TextField
+            PassWordTextField(controllers: controllers),
             const SizedBox(
               height: 10,
             ),
@@ -109,6 +85,66 @@ class LoginForm extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class PassWordTextField extends StatefulWidget {
+  const PassWordTextField({
+    Key? key,
+    required this.controllers,
+  }) : super(key: key);
+
+  final SignInController controllers;
+
+  @override
+  State<PassWordTextField> createState() => _PassWordTextFieldState();
+}
+
+class _PassWordTextFieldState extends State<PassWordTextField> {
+  @override
+  Widget build(BuildContext context) {
+    bool obsecureText = true;
+
+    return TextFormField(
+      controller: widget.controllers.passwordController,
+      obscureText: obsecureText,
+      decoration: InputDecoration(
+        prefixIcon: const Icon(
+          Icons.lock,
+        ),
+        labelText: "Password",
+        hintText: "Enter Your Password",
+        border: const OutlineInputBorder(),
+        suffixIcon: IconButton(
+          icon: obsecureText
+              ? const Icon(Icons.visibility_off)
+              : const Icon(Icons.visibility),
+          onPressed: () {
+            setState(() {
+              obsecureText = !obsecureText;
+            });
+          },
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter Your Password';
+        }
+        if (value.length < 8) {
+          return 'Password must be at least 8 characters long';
+        }
+        // if (!RegExp(r'[a-zA-Z]').hasMatch(value)) {
+        //   return 'Password must contain at least one letter';
+        // }
+        // if (!RegExp(r'[0-9]').hasMatch(value)) {
+        //   return 'Password must contain at least one number';
+        // }
+        // if (!RegExp(r'[!@#\$&*~]').hasMatch(value)) {
+        //   return 'Password must contain at least one special character';
+        // }
+        return null;
+      },
     );
   }
 }

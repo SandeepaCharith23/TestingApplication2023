@@ -36,4 +36,29 @@ class UserRepository extends GetxController {
       // print(error);
     });
   }
+
+  //process-fetch Data from FirebaseDB-step2-Fetch single User Details
+  Future<UserModel> getSingleUserDetails(String currentuseremail) async {
+    //1.get the DataSnapshots of Users
+    final datasnapshotuser = await _dbinstance
+        .collection("User")
+        .where("EmailAddress", isEqualTo: currentuseremail)
+        .get();
+
+    //2.convert snapshot to Map using method in User model class
+    final singleuserData =
+        datasnapshotuser.docs.map((e) => UserModel.fromSnapShot(e)).single;
+    return singleuserData;
+  }
+
+  //process-fetch Data from FirebaseDB-step2-Fetch all USers  Details
+  Future<List<UserModel>> getMultipleUserDetails() async {
+    //1.get the DataSnapshots of Users
+    final datasnapshotsuser = await _dbinstance.collection("User").get();
+
+    //2.convert snapshot to Map using method in User model class
+    final multipleuserData =
+        datasnapshotsuser.docs.map((e) => UserModel.fromSnapShot(e)).toList();
+    return multipleuserData;
+  }
 }

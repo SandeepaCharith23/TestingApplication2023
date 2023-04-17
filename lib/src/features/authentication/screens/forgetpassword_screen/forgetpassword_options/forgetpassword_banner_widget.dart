@@ -33,18 +33,20 @@ class ForgetPasswordBanner extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  forgetPasswordBanner1text01,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                Text(
-                  forgetPasswordBanner1text02,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    forgetPasswordBanner1text01,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Text(
+                    forgetPasswordBanner1text02,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

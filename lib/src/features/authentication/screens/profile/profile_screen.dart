@@ -1,6 +1,7 @@
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/constants/image_path.dart';
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/loging_screen/login_screen.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/profile/update_profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../../../../repository/authentication_repository/authentication_repository.dart';
 
+import '../all_shop_owners/allShopOwners_screen.dart';
 import 'common_widgets/menu_list_tile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -22,7 +24,9 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => const DashboardScreen());
+          },
           icon: const Icon(LineAwesomeIcons.angle_left),
         ),
         title: Text(
@@ -119,9 +123,20 @@ class ProfileScreen extends StatelessWidget {
               ),
               MenuListTile(
                 leadingIcon: LineAwesomeIcons.user,
-                textMain: 'UserManagemnet',
+                textMain: 'User Managemnet',
                 trailingIconOnPressed: () {},
                 listTileonpress: () {},
+                endIcon: true,
+              ),
+              MenuListTile(
+                leadingIcon: LineAwesomeIcons.home,
+                textMain: 'All Shops Details',
+                trailingIconOnPressed: () {
+                  Get.to(() => const AllShopOwners());
+                },
+                listTileonpress: () {
+                  Get.to(() => const AllShopOwners());
+                },
                 endIcon: true,
               ),
               const Divider(),

@@ -31,7 +31,7 @@ class UserModel {
     };
   }
 
-  ///Map data which fetch from firebase to usermodel
+  ///process-fetch Data from FirebaseDB-step-1-Map data which fetch from firebase to usermodel
   factory UserModel.fromSnapShot(
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     final data = documentSnapshot.data()!;
