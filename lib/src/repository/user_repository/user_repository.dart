@@ -66,7 +66,7 @@ class UserRepository extends GetxController {
   Future<void> updateUserDetails(UserModel userModel) async {
     await _dbinstance
         .collection("User")
-        .doc(userModel.userId)
+        .doc(userModel.emailAddress)
         .update(userModel.toJson());
   }
 }

@@ -54,7 +54,48 @@ class _LoginFormState extends State<LoginForm> {
             ),
 
             //Password TextField
-            PassWordTextField(controllers: controllers),
+            //PassWordTextField(controllers: controllers),
+            Obx(
+              () => TextFormField(
+                controller: controllers.passwordController,
+                obscureText: SignInController.instance.ispasswordHidden.value,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.lock,
+                  ),
+                  labelText: "Password",
+                  hintText: "Enter Your Password",
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      SignInController.instance.ispasswordHidden.value =
+                          !SignInController.instance.ispasswordHidden.value;
+                    },
+                    icon: Icon(SignInController.instance.ispasswordHidden.value
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter Your Password';
+                  }
+                  if (value.length < 8) {
+                    return 'Password must be at least 8 characters long';
+                  }
+                  // if (!RegExp(r'[a-zA-Z]').hasMatch(value)) {
+                  //   return 'Password must contain at least one letter';
+                  // }
+                  // if (!RegExp(r'[0-9]').hasMatch(value)) {
+                  //   return 'Password must contain at least one number';
+                  // }
+                  // if (!RegExp(r'[!@#\$&*~]').hasMatch(value)) {
+                  //   return 'Password must contain at least one special character';
+                  // }
+                  return null;
+                },
+              ),
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -104,11 +145,9 @@ class PassWordTextField extends StatefulWidget {
 class _PassWordTextFieldState extends State<PassWordTextField> {
   @override
   Widget build(BuildContext context) {
-    bool obsecureText = true;
-
     return TextFormField(
       controller: widget.controllers.passwordController,
-      obscureText: obsecureText,
+      obscureText: SignInController.instance.ispasswordHidden.value,
       decoration: InputDecoration(
         prefixIcon: const Icon(
           Icons.lock,
@@ -117,15 +156,13 @@ class _PassWordTextFieldState extends State<PassWordTextField> {
         hintText: "Enter Your Password",
         border: const OutlineInputBorder(),
         suffixIcon: IconButton(
-          icon: obsecureText
-              ? const Icon(Icons.visibility_off)
-              : const Icon(Icons.visibility),
-          onPressed: () {
-            setState(() {
-              obsecureText = !obsecureText;
-            });
-          },
-        ),
+            onPressed: () {
+              SignInController.instance.ispasswordHidden.value =
+                  !SignInController.instance.ispasswordHidden.value;
+            },
+            icon: Icon(SignInController.instance.ispasswordHidden.value
+                ? Icons.visibility
+                : Icons.visibility_off)),
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
