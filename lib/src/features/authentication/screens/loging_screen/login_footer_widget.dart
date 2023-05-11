@@ -16,7 +16,7 @@ class LoginFooterWidget extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: () async {},
             icon: const Image(
               image: AssetImage(loginScreenGooglelogo1),
               width: 20,
@@ -25,7 +25,9 @@ class LoginFooterWidget extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            // AuthServices().signInWithGoogle();
+          },
           child: const Text.rich(
             TextSpan(
               text: "Already have an account?",

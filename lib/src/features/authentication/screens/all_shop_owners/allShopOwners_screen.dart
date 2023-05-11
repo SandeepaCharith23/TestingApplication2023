@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/features/authentication/controllers/profile_controller.dart';
 import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';

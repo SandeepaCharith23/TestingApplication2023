@@ -45,12 +45,13 @@ class ForgetPasswordModelBottomSheet {
             const SizedBox(
               height: 10,
             ),
-            ForgetPasswordBanner(
-              forgetPasswordBanner1text01: forgetPasswordBanner2text01,
-              forgetPasswordBanner1text02: forgetPasswordBanner2text02,
-              icon1: Icons.mobile_friendly_outlined,
-              pressedmethod: () {},
-            ),
+
+            // ForgetPasswordBanner(
+            //   forgetPasswordBanner1text01: forgetPasswordBanner2text01,
+            //   forgetPasswordBanner1text02: forgetPasswordBanner2text02,
+            //   icon1: Icons.mobile_friendly_outlined,
+            //   pressedmethod: () {},
+            // ),
           ],
         ),
       ),

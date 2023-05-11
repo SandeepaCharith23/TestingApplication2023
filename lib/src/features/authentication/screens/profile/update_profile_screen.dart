@@ -117,8 +117,9 @@ class UpdateProfileScreen extends StatelessWidget {
                             TextFormField(
                               //initialValue: userModeldata.emailAddress,
                               controller: emailAddressController,
+                              enabled: false,
                               decoration: const InputDecoration(
-                                hintText: "Enter your email address",
+                                hintText: "Cannot edit your email address",
                                 label: Text("Email address"),
                                 prefixIcon: Icon(LineAwesomeIcons.envelope),
                               ),

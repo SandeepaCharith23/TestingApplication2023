@@ -1,5 +1,4 @@
 import 'package:ecommerseapp2023/firebase_options.dart';
-import 'package:ecommerseapp2023/src/features/authentication/screens/splash_screen/splash_screen.dart';
 
 import 'package:ecommerseapp2023/src/repository/authentication_repository/authentication_repository.dart';
 
@@ -29,8 +28,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: 500),
-      home: const SplashScreen(),
-      // home: const CircularProgressIndicator(),
+      //home: const SplashScreen(),
+      home: const CircularProgressIndicator(),
     );
   }
 }

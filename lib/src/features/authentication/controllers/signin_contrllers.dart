@@ -8,27 +8,11 @@ import 'package:get/get.dart';
 
 class SignInController extends GetxController {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   static SignInController get instance => Get.find();
 
   //create a variable to find that user is already assigned or not
   var isSignIn = false.obs;
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-  }
 
   var ispasswordHidden = true.obs;
 
@@ -65,4 +49,16 @@ class SignInController extends GetxController {
       Get.offAll(const SignUpScreen());
     }
   }
+
+  //Google sign In Method
+  // Future<GoogleSignInAccount?> googleSignInMethod() async {
+  //   final GoogleSignInAccount googleSignInAccount =
+  //       await _googleSignIn.signIn();
+  //   return googleSignInAccount;
+  // }
+
+  // //Google Sign Out Method
+  // Future<void> googleSignOutMethod() async {
+  //   await _googleSignIn.signOut();
+  // }
 }
