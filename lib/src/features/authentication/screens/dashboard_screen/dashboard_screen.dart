@@ -1,5 +1,7 @@
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
 import 'package:ecommerseapp2023/src/constants/text_string.dart';
+
+import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/navigation_section.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/appbar.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/banners.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/categories.dart';
@@ -18,12 +20,14 @@ class DashboardScreen extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(kDefaultpaddingSize),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 dashboardIntroductionMainTitle,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
+
               Text(
                 dashboardIntroductionSubTitle,
                 style: Theme.of(context).textTheme.titleMedium,
@@ -33,7 +37,7 @@ class DashboardScreen extends StatelessWidget {
               ),
 
               //Search Results
-              const DashBoardSearch(),
+              DashBoardSearch(),
 
               //categories
               const DashBoardCategories(),
@@ -42,6 +46,10 @@ class DashboardScreen extends StatelessWidget {
                 height: 10,
               ),
 
+              const NavigationSection(),
+              const SizedBox(
+                height: 10,
+              ),
               //Banners
               const DashBoardBanners(),
               const SizedBox(

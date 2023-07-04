@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class OnBoardScreenWidget extends StatelessWidget {
   const OnBoardScreenWidget({
@@ -37,18 +36,25 @@ class OnBoardScreenWidget extends StatelessWidget {
               children: [
                 Text(
                   mainText,
-                  style: GoogleFonts.robotoCondensed(
-                    textStyle: Theme.of(context).textTheme.headlineSmall,
+                  style: TextStyle(
+                    fontStyle:
+                        Theme.of(context).textTheme.headlineSmall?.fontStyle,
+                    fontFamily: "Lobster",
+                    fontSize: 30,
+                    // color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   subText,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.robotoCondensed(
-                    textStyle: Theme.of(context).textTheme.titleLarge,
+                  style: TextStyle(
+                    fontStyle:
+                        Theme.of(context).textTheme.titleLarge?.fontStyle,
+                    fontFamily: "Aboreto",
+                    fontSize: 12,
+                    // color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
                   ),
                 ),
               ],
@@ -57,8 +63,11 @@ class OnBoardScreenWidget extends StatelessWidget {
           Text(
             count,
             textAlign: TextAlign.center,
-            style: GoogleFonts.robotoCondensed(
-              textStyle: Theme.of(context).textTheme.headlineSmall,
+            style: TextStyle(
+              fontStyle: Theme.of(context).textTheme.titleLarge?.fontStyle,
+              fontFamily: "Lobster",
+              fontSize: 16,
+              // color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),

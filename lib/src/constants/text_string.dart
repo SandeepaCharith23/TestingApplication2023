@@ -1,5 +1,6 @@
-const String testAppName = "Lanka Services \n 2023";
+const String testAppName = "PlantApp2023";
 const String testAppTagLine = "ගන්න අපේ දේ..";
+const String testAppTagLine1 = "version 01.01";
 
 const String testOnboardingScreen1MainText = "Help our Srilankan Youth";
 const String testOnboardingScreen1SubText =
@@ -56,7 +57,7 @@ const String forgetPasswordthroughOTPtext03 =
     "Enter the verification code sent at your ";
 
 //Dashboard texts
-const String dashboardAppBarAppTitle = "Ecommerse 2023";
+const String dashboardAppBarAppTitle = "PlantApp2023";
 const String dashboardIntroductionMainTitle =
     "Welcome to our user-friendly shopping app!";
 const String dashboardIntroductionSubTitle =

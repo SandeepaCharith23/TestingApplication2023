@@ -1,11 +1,10 @@
 import 'package:ecommerseapp2023/src/common_Widgets/Animation_Widgets/fade_in_animation_model.dart';
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/common_Widgets/Animation_Widgets/fade_in_animation_controller.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/onboarding_screen/onboarding_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../common_Widgets/Animation_Widgets/fade_in_animation_design.dart';
 import '../../../../constants/image_path.dart';
@@ -24,8 +23,9 @@ class SplashScreen extends StatelessWidget {
     var brightness = mediaquery.platformBrightness;
 
     final isDarkModeActivated = brightness == Brightness.dark;
+    debugPrint("splashScrenn initialized");
 
-    // FadeInAnimationController.find.startAnimation();
+    //FadeInAnimationController.find.startAnimation();
 
     final controller = Get.put(FadeInAnimationController());
     controller.startAnimationSplashScreen();
@@ -67,8 +67,10 @@ class SplashScreen extends StatelessWidget {
                 children: [
                   Text(
                     testAppName,
-                    style: GoogleFonts.lobster(
-                      textStyle: Theme.of(context).textTheme.headlineSmall,
+                    style: TextStyle(
+                      fontStyle:
+                          Theme.of(context).textTheme.headlineSmall?.fontStyle,
+                      fontFamily: "Lobster",
                       fontSize: 35,
                       // color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -76,13 +78,26 @@ class SplashScreen extends StatelessWidget {
                   ),
 
                   //////////////////////////////////
-                  Text(
+                  const Text(
                     testAppTagLine,
-                    style: GoogleFonts.aboreto(
-                      textStyle: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontFamily: "Aboreto",
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 10,
+                      letterSpacing: 5,
+                    ),
+                  ),
+
+                  const Text(
+                    testAppTagLine1,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontFamily: "Aboreto",
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                      wordSpacing: 2,
                     ),
                   ),
                 ],
@@ -106,6 +121,14 @@ class SplashScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   color: kprimaryColour,
                 ),
+                child: IconButton(
+                    onPressed: () {
+                      Get.to(() => const OnBoardingScreen());
+                    },
+                    icon: const Icon(
+                      Icons.home,
+                      color: Colors.white,
+                    )),
               ),
             ),
           ],

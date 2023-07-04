@@ -14,7 +14,7 @@ class OnBoardingController extends GetxController {
   final pages = [
     //firt Page
     const OnBoardScreenWidget(
-      color: Colors.green,
+      color: Colors.white,
       imageSizeRatio: 0.3,
       imagepath: onboardScreen1Image,
       mainText: testOnboardingScreen1MainText,
@@ -23,7 +23,7 @@ class OnBoardingController extends GetxController {
     ),
     //Second Page
     const OnBoardScreenWidget(
-      color: Colors.blue,
+      color: Colors.lightBlue,
       imageSizeRatio: 0.5,
       imagepath: onboardScreen2Image,
       mainText: testOnboardingScreen2MainText,
@@ -33,7 +33,7 @@ class OnBoardingController extends GetxController {
 
     //Third Page
     const OnBoardScreenWidget(
-      color: Colors.amber,
+      color: Colors.white,
       imageSizeRatio: 0.6,
       imagepath: onboardScreen3Image,
       mainText: testOnboardingScreen3MainText,

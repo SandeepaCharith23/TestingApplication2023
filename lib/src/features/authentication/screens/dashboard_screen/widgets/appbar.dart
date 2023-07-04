@@ -20,7 +20,13 @@ class DashBoardAppBar extends StatelessWidget implements PreferredSize {
       ),
       title: Text(
         dashboardAppBarAppTitle,
-        style: Theme.of(context).textTheme.titleLarge,
+        style: TextStyle(
+          fontStyle: Theme.of(context).textTheme.titleMedium?.fontStyle,
+          fontFamily: "Lobster",
+          fontSize: 25,
+          // color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       centerTitle: true,
       elevation: 0,

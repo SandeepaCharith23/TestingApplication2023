@@ -1,7 +1,10 @@
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/dashboard_screen.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/splash_screen/splash_screen.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/welcome_screen/welcome_screen.dart';
 import 'package:ecommerseapp2023/src/repository/authentication_repository/exception/signupwithemailandpassword_failure_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+
 import 'package:get/get.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -27,10 +30,11 @@ class AuthenticationRepository extends GetxController {
     ever(firebaseCurrentUser, _setInitialScreen);
   }
 
-  //4.This method shows -If user sign in to app ,he wii redirect to welcomeScreen otherwise he will rediredt to Dashboard screen
+  //4.This method shows -If user sign in to app ,he will redirect to welcomeScreen otherwise he will rediredt to Dashboard screen
   _setInitialScreen(User? user) {
+    debugPrint("Inside authentication_repository._setInitialScreen method");
     user == null
-        ? Get.offAll(() => const WelcomeScreen())
+        ? Get.offAll(() => const SplashScreen())
         : Get.offAll(() => const DashboardScreen());
   }
 
@@ -62,8 +66,10 @@ class AuthenticationRepository extends GetxController {
           email: email1, password: password1);
     } on FirebaseAuthException catch (e) {
       final ex = SignUpwithEmailAndPasswordFailures.code(e.code);
-      // ignore: avoid_print
-      print('Firebase Auth Exception -${ex.errormsg}');
+
+      if (kDebugMode) {
+        print('Firebase Auth Exception -----${ex.errormsg}');
+      }
     } catch (_) {
       const ex = SignUpwithEmailAndPasswordFailures();
       // ignore: avoid_print

@@ -1,4 +1,5 @@
 import 'package:ecommerseapp2023/src/features/authentication/controllers/onboarding_controller.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/welcome_screen/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -57,7 +58,8 @@ class OnBoardingScreen extends StatelessWidget {
             right: 20,
             child: TextButton(
               onPressed: () {
-                onbordingcontroller.skip();
+                Get.offAll(() => const WelcomeScreen());
+                // onbordingcontroller.skip();
               },
               child: const Text(
                 "Skip",

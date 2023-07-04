@@ -10,7 +10,7 @@ class DashBoardCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     final list = DashboardCategoriesModel.categorieslist;
     return SizedBox(
-      height: 200,
+      height: 100,
       child: ListView.builder(
         itemCount: list.length,
         scrollDirection: Axis.horizontal,

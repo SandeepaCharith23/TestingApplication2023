@@ -11,7 +11,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../../../../repository/authentication_repository/authentication_repository.dart';
 
-import '../all_shop_owners/allShopOwners_screen.dart';
+import '../all_shop_owners/allshopowners_screen.dart';
 import 'common_widgets/menu_list_tile.dart';
 
 class ProfileScreen extends StatelessWidget {
