@@ -1,3 +1,4 @@
+import 'package:ecommerseapp2023/src/features/authentication/screens/market_place/marketplace_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavigationSection extends StatelessWidget {
@@ -73,7 +74,14 @@ class NavigationSection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return const MarketPlaceScreen();
+                          }));
+
+                          //Get.to(() => const MarketPlaceScreen());
+                        },
                         icon: Image.asset(
                           'assets/icons/icons-market-64.png',
                           fit: BoxFit.fill,

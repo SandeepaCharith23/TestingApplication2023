@@ -4,7 +4,7 @@ import 'package:ecommerseapp2023/src/constants/text_string.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/navigation_section.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/appbar.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/banners.dart';
-import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/categories.dart';
+
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/search.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/top_products.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ class DashboardScreen extends StatelessWidget {
               DashBoardSearch(),
 
               //categories
-              const DashBoardCategories(),
+              // const DashBoardCategories(),
 
               const SizedBox(
                 height: 10,
