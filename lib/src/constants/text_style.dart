@@ -1,3 +1,4 @@
+import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,4 +16,11 @@ TextStyle subTextStyle1 = GoogleFonts.lobster(
     color: Colors.black,
     fontWeight: FontWeight.bold,
   ),
+);
+
+const pagetextFieldStyle = TextStyle(
+  fontFamily: "Roboto",
+  fontSize: 14,
+  fontWeight: FontWeight.normal,
+  decorationColor: kprimaryTextColor,
 );

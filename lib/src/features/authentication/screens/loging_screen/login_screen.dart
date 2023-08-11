@@ -22,12 +22,12 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: isDarkModeActivated1
             ? kBackgroundColorinDarkMode
             : kBackgroundColorinLightMode,
-        body: SingleChildScrollView(
+        body: const SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 FormHeader(
                   imageheightratio: 0.3,
                   imagepath: loginScreenImage1,

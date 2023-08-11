@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
 import 'package:ecommerseapp2023/src/features/authentication/models/product.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/market_place/components/categories.dart';
@@ -29,6 +28,7 @@ class MarketplaceBody extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           child: Categories(),
         ),
+        //Available products in Marketplace
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(10.0),

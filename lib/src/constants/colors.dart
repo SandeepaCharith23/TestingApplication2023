@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const Color kprimaryColour1 = Color(0xFF4532ED);
 const Color kprimaryColour2 = Color(0xFF3D82AE);
 const Color kprimaryColour = Colors.black;
+const Color kprimaryTextColor = Colors.blueGrey;
 const Color kprimaryColourWhite = Colors.white;
 const Color ktextColourinLight = Colors.black;
 const Color ktextColourinDark = Colors.white;

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../constants/sizes.dart';
-import 'Itemcounterwithfavouritelable.dart';
+import 'Itemcounterwith_favouritelable.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final Product product;
@@ -41,6 +41,9 @@ class ProductDetailsBody extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(child: ProductDescriptionTile(product: product)),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       const Itemcounterwithfavouritelable(),
                       Padding(
                         padding: const EdgeInsets.only(top: 5, left: 16),

@@ -40,7 +40,7 @@ dependencies:
   get: ^4.6.5
   liquid_swipe: ^3.0.0
   smooth_page_indicator: ^1.0.1
-  dependencies: ^0.1.5
+
   flutter_otp_text_field: ^1.1.1
   firebase_core: ^2.7.0
   firebase_auth: ^4.2.9
@@ -50,6 +50,8 @@ dependencies:
   phone_number: ^1.0.0
   libphonenumber: ^2.0.2
   flutter_svg: ^2.0.5
+  image_picker: ^1.0.1
+  gradle_properties: ^1.0.0
  # google_sign_in: ^5.0.0
   
   
@@ -123,6 +125,9 @@ flutter:
     - family: Lobster
       fonts: 
         - asset: assets/fonts/Lobster-Regular.ttf
+    - family: Roboto
+      fonts: 
+        - asset: assets/fonts/Roboto-Regular.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
