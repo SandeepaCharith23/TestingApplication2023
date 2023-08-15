@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Product {
-  late final String image, title, description, productName, productOwnersname;
+  late final String image,
+      title,
+      description,
+      productName,
+      productOwnersname,
+      productCategory;
   late final double price, size;
-  late final int id;
+  late final String? id;
   late final Color color;
 
   Product({
@@ -16,7 +21,24 @@ class Product {
     required this.size,
     required this.id,
     required this.color,
+    required this.productCategory,
   });
+
+  //map data into Json object
+  toJson() {
+    return {
+      "ProductImage": image,
+      "ProductTitle": title,
+      "ProductDescription": description,
+      "ProductName": productName,
+      "ProductOwnerName": productOwnersname,
+      "ProductPrice": price,
+      "ProductQuentity": size,
+      "ProductId": id,
+      "ProductCategory": productCategory,
+      "ProductBackgroundColor": color.toString(),
+    };
+  }
 }
 
 List<Product> products = [
@@ -27,10 +49,11 @@ List<Product> products = [
           "Orchid plants are diverse and elegant with vibrant blooms. They captivate with their colors and delicate petals, making them a popular choice among flower enthusiasts",
       price: 100.00,
       size: 2,
-      id: 1,
+      id: "",
       color: const Color(0xFF3D82AE),
       productName: 'Orchid',
-      productOwnersname: 'ABC Shop'),
+      productOwnersname: 'ABC Shop',
+      productCategory: ''),
   Product(
       image: "assets/images/marketplace_images/tomatoplant.jpg",
       title: "Decorated and Vege",
@@ -38,10 +61,11 @@ List<Product> products = [
           "Tomato plants are prolific growers known for their juicy and flavorful fruits. With lush green foliage, they produce clusters of red, yellow, or orange tomatoes that are versatile and delicious in various culinary creations.",
       price: 100.00,
       size: 2,
-      id: 2,
+      id: "",
       color: const Color(0xFF3D82AE),
       productName: 'Tomatto',
-      productOwnersname: 'CDE Shop'),
+      productOwnersname: 'CDE Shop',
+      productCategory: ''),
   Product(
       image: "assets/images/marketplace_images/grapesplant.jpg",
       title: "Sweet and Refresh",
@@ -49,10 +73,11 @@ List<Product> products = [
           "Grapes are luscious fruits that grow in clusters on vines. They come in various colors like green, red, and purple. With their sweet and juicy flavor, grapes are enjoyed as a refreshing snack and used in winemaking and cooking",
       price: 100.00,
       size: 2,
-      id: 3,
+      id: "",
       color: const Color(0xFF3D82AE),
       productName: 'Graphes',
-      productOwnersname: 'XYX shop'),
+      productOwnersname: 'XYX shop',
+      productCategory: ''),
   Product(
       image: "assets/images/marketplace_images/orchidplant.jpg",
       title: "Eye catchins",
@@ -60,8 +85,9 @@ List<Product> products = [
           "අලංකාර වගේම වඩාත් ආකර්ශණීය මල් වර්ග අතුරින් ඕකිඩ් කියන්නේ ඒ ලැයිස්තුවේ ඉහළින්ම තියෙන මල් වර්ගයක්. ගෙවතු අලංකරණයට වගේම උද්‍යාන අලංකරණයටත් වාණිජමය වශයෙන් වුණත් ඕකිඩ් වගා කරන්නට පුළුවන් .ඉතින් ඕකිඩ් කියන්නේ බොහෝ සංවේදී ශාකයක්. උඩවැඩියා කියන්නෙත් මේ ඕකිඩ් මල්වලටමයි. ඉතින් ලංකාවේ දේශගුණික තත්ත්වය මත ඕකිඩ් මල් වර්ග කිහිපයක් වගා කරන්නට හැකියි.ඉතින් ඕකිඩ් වර්ෂා කාලයේ දී වනාන්තරවල ස්වාභාවිකව වැඩෙන ශාකයක් වුණත් විවිධ දේශගුණික තත්ත්වයන් යටතේ කෘතීම පරිසරයේදීත් වගා කළ හැකියි.",
       price: 100.00,
       size: 2,
-      id: 4,
+      id: "",
       color: const Color(0xFF3D82AE),
       productName: 'ඕකිඩ් පැලැටි',
-      productOwnersname: 'PQR Shop'),
+      productOwnersname: 'PQR Shop',
+      productCategory: ''),
 ];

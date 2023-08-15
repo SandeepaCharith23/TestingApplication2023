@@ -1,7 +1,10 @@
-import 'dart:io';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerseapp2023/src/features/authentication/models/product.dart';
+import 'package:ecommerseapp2023/src/repository/product_repository/product_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import 'package:image_picker/image_picker.dart';
 
@@ -16,6 +19,17 @@ class AddNewProductScreen extends StatefulWidget {
 
 class _AddNewProductScreenState extends State<AddNewProductScreen> {
   final formkeyaddnewproduct = GlobalKey<FormState>();
+  final controllers = Get.put(ProductController());
+  XFile? pickedImageFile;
+  late String customProductId;
+
+  String generateCustomID(Timestamp timestamp) {
+    DateTime dateTime = timestamp.toDate();
+    customProductId =
+        '${dateTime.year}${dateTime.month}${dateTime.day}${dateTime.hour}${dateTime.minute}${dateTime.second}';
+    return customProductId;
+  }
+
   // final TextEditingController titleTextController;
   @override
   Widget build(BuildContext context) {
@@ -52,6 +66,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: controllers.productTitleController,
                       style: pagetextFieldStyle,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -96,9 +111,10 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                             setState(() {
                               selectedItem =
                                   newValue; // Update the selected item when a new item is selected
-                              // if (kDebugMode) {
-                              //   print(selectedItem);
-                              // }
+
+                              if (kDebugMode) {
+                                print(selectedItem);
+                              }
                             });
                           },
                           items:
@@ -126,6 +142,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: controllers.productNameController,
                       style: pagetextFieldStyle,
                       decoration: const InputDecoration(
                         hintText: "Anthurium-Anthurium andraeanum",
@@ -142,6 +159,31 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     ),
                   ),
 
+                  //3.Product Description
+                  const Text(
+                    "Please Insert Product Description",
+                    style: pagetextFieldStyle,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: controllers.productDescriptionController,
+                      style: pagetextFieldStyle,
+                      decoration: const InputDecoration(
+                        hintText: "this plants is used for etc...",
+                        label: Text(
+                          "Please use breief description on your product",
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Please enter a Description to your product";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+
                   //product unit price
                   const Text(
                     "Please Insert Product Unit Price",
@@ -150,6 +192,13 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: controllers.productPriceController,
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.allow(
+                            RegExp(r'^(\d+)?\.?\d{0,2}'))
+                      ],
                       style: pagetextFieldStyle,
                       decoration: const InputDecoration(
                         hintText: "100.00",
@@ -174,6 +223,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: controllers.productQuentityController,
                       style: pagetextFieldStyle,
                       decoration: const InputDecoration(
                         hintText: "100.00",
@@ -222,6 +272,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                               onPressed: () {
                                 Navigator.of(context).pop();
                                 _pickImage(ImageSource.gallery);
+                                setState(() {});
                               },
                               child: const Text('Gallery'),
                             ),
@@ -231,103 +282,103 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     },
                     child: const Text('Select Image'),
                   ),
-                  Center(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(0, 3),
-                                    blurRadius: 7,
-                                    spreadRadius: 3.0,
-                                    color: Colors.grey.withOpacity(0.5)),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Image.asset(
-                                    'assets/icons/icons-chat-64.png',
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                const Text(
-                                  'Gallery',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        /////////////////////
+                  // Center(
+                  //   child: Row(
+                  //     children: [
+                  //       Expanded(
+                  //         child: Container(
+                  //           width: 100,
+                  //           height: 100,
+                  //           decoration: BoxDecoration(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             color: Colors.white,
+                  //             boxShadow: [
+                  //               BoxShadow(
+                  //                   offset: const Offset(0, 3),
+                  //                   blurRadius: 7,
+                  //                   spreadRadius: 3.0,
+                  //                   color: Colors.grey.withOpacity(0.5)),
+                  //             ],
+                  //           ),
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.center,
+                  //             mainAxisAlignment: MainAxisAlignment.center,
+                  //             children: [
+                  //               IconButton(
+                  //                 onPressed: () {},
+                  //                 icon: Image.asset(
+                  //                   'assets/icons/icons-chat-64.png',
+                  //                   fit: BoxFit.fill,
+                  //                 ),
+                  //               ),
+                  //               const Text(
+                  //                 'Gallery',
+                  //                 style: TextStyle(
+                  //                   fontSize: 10,
+                  //                   fontWeight: FontWeight.bold,
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       const SizedBox(
+                  //         width: 10,
+                  //       ),
+                  //       /////////////////////
 
-                        ////////////////
+                  //       ////////////////
 
-                        Expanded(
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(0, 3),
-                                    blurRadius: 7,
-                                    spreadRadius: 3.0,
-                                    color: Colors.grey.withOpacity(0.5)),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    // Navigator.of(context).push(
-                                    //     MaterialPageRoute(builder: (context) {
-                                    //   return const MarketPlaceScreen();
-                                    // }));
+                  //       Expanded(
+                  //         child: Container(
+                  //           width: 100,
+                  //           height: 100,
+                  //           decoration: BoxDecoration(
+                  //             borderRadius: BorderRadius.circular(10),
+                  //             color: Colors.white,
+                  //             boxShadow: [
+                  //               BoxShadow(
+                  //                   offset: const Offset(0, 3),
+                  //                   blurRadius: 7,
+                  //                   spreadRadius: 3.0,
+                  //                   color: Colors.grey.withOpacity(0.5)),
+                  //             ],
+                  //           ),
+                  //           child: Column(
+                  //             crossAxisAlignment: CrossAxisAlignment.center,
+                  //             mainAxisAlignment: MainAxisAlignment.center,
+                  //             children: [
+                  //               IconButton(
+                  //                 onPressed: () {
+                  //                   // Navigator.of(context).push(
+                  //                   //     MaterialPageRoute(builder: (context) {
+                  //                   //   return const MarketPlaceScreen();
+                  //                   // }));
 
-                                    //Get.to(() => const MarketPlaceScreen());
-                                  },
-                                  icon: Image.asset(
-                                    'assets/icons/icons-market-64.png',
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                const Text(
-                                  'Camera',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                  ),
+                  //                   //Get.to(() => const MarketPlaceScreen());
+                  //                 },
+                  //                 icon: Image.asset(
+                  //                   'assets/icons/icons-market-64.png',
+                  //                   fit: BoxFit.fill,
+                  //                 ),
+                  //               ),
+                  //               const Text(
+                  //                 'Camera',
+                  //                 style: TextStyle(
+                  //                   fontSize: 10,
+                  //                   fontWeight: FontWeight.bold,
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       const SizedBox(
+                  //         width: 10,
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
 
                   // Save Button
                   SizedBox(
@@ -337,6 +388,33 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                         if (formkeyaddnewproduct.currentState!.validate()) {
                           if (kDebugMode) {
                             print("Done");
+
+                            final product = Product(
+                              image: pickedImageFile.toString(),
+                              title: controllers.productTitleController.text
+                                  .toUpperCase(),
+                              description: controllers
+                                  .productDescriptionController.text
+                                  .toUpperCase(),
+                              productName: controllers
+                                  .productNameController.text
+                                  .toUpperCase(),
+                              productOwnersname: controllers
+                                  .productOwnerNameController.text
+                                  .toUpperCase(),
+                              price: double.parse(
+                                  controllers.productPriceController.text),
+                              size: double.parse(
+                                  controllers.productQuentityController.text),
+                              id: generateCustomID(Timestamp.now()),
+                              color: Colors.black,
+                              productCategory: selectedItem.toString(),
+                            );
+
+                            // Timestamp timestamp = Timestamp.now();
+                            // String customId = generateCustomID(timestamp);
+                            ProductController.instance
+                                .addNewProduct(customProductId, product);
                           }
                         }
                       },
@@ -355,14 +433,14 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
       ),
     );
   }
-}
 
-Future<void> _pickImage(ImageSource source) async {
-  final picker = ImagePicker();
-  final pickedFile = await picker.pickImage(source: source);
-
-  if (pickedFile != null) {
-    // Handle the selected/captured image here
-    Image.file(File(pickedFile.path));
-  } else {}
+  Future<void> _pickImage(ImageSource source) async {
+    XFile? pickedFile = await ImagePicker().pickImage(source: source);
+    setState(() {
+      if (pickedFile != null) {
+        // Handle the selected/captured image here
+        pickedImageFile = XFile(pickedFile.path);
+      }
+    });
+  }
 }

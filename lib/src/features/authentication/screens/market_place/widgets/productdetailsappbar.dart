@@ -17,7 +17,7 @@ class ProductDetailsAppBar extends StatelessWidget implements PreferredSize {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: product.color,
+      backgroundColor: kBackgroundColorinDarkMode,
       leading: IconButton(
         icon: SvgPicture.asset(
           "assets/icons/back.svg",
