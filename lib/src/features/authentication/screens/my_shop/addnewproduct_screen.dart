@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerseapp2023/src/features/authentication/models/product.dart';
 import 'package:ecommerseapp2023/src/repository/product_repository/product_repository.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +24,7 @@ class AddNewProductScreen extends StatefulWidget {
 class _AddNewProductScreenState extends State<AddNewProductScreen> {
   final formkeyaddnewproduct = GlobalKey<FormState>();
   final controllers = Get.put(ProductController());
-  XFile? pickedImageFile;
+  late String pickedImageFile;
   late String customProductId;
 
   String generateCustomID(Timestamp timestamp) {
@@ -159,7 +163,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     ),
                   ),
 
-                  //3.Product Description
+                  //4.Product Description
                   const Text(
                     "Please Insert Product Description",
                     style: pagetextFieldStyle,
@@ -184,7 +188,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     ),
                   ),
 
-                  //product unit price
+                  //5.product unit price
                   const Text(
                     "Please Insert Product Unit Price",
                     style: pagetextFieldStyle,
@@ -215,7 +219,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     ),
                   ),
 
-                  //Available product quentity
+                  //6.Available product quentity
                   const Text(
                     "Please Insert Available product quentity",
                     style: pagetextFieldStyle,
@@ -240,7 +244,7 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     ),
                   ),
 
-                  //Drop Images -or used camera
+                  //7.Drop Images -or used camera
                   const Text(
                     "Please Insert Images of your product",
                     style: pagetextFieldStyle,
@@ -272,7 +276,6 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                               onPressed: () {
                                 Navigator.of(context).pop();
                                 _pickImage(ImageSource.gallery);
-                                setState(() {});
                               },
                               child: const Text('Gallery'),
                             ),
@@ -282,103 +285,27 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     },
                     child: const Text('Select Image'),
                   ),
-                  // Center(
-                  //   child: Row(
-                  //     children: [
-                  //       Expanded(
-                  //         child: Container(
-                  //           width: 100,
-                  //           height: 100,
-                  //           decoration: BoxDecoration(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //             color: Colors.white,
-                  //             boxShadow: [
-                  //               BoxShadow(
-                  //                   offset: const Offset(0, 3),
-                  //                   blurRadius: 7,
-                  //                   spreadRadius: 3.0,
-                  //                   color: Colors.grey.withOpacity(0.5)),
-                  //             ],
-                  //           ),
-                  //           child: Column(
-                  //             crossAxisAlignment: CrossAxisAlignment.center,
-                  //             mainAxisAlignment: MainAxisAlignment.center,
-                  //             children: [
-                  //               IconButton(
-                  //                 onPressed: () {},
-                  //                 icon: Image.asset(
-                  //                   'assets/icons/icons-chat-64.png',
-                  //                   fit: BoxFit.fill,
-                  //                 ),
-                  //               ),
-                  //               const Text(
-                  //                 'Gallery',
-                  //                 style: TextStyle(
-                  //                   fontSize: 10,
-                  //                   fontWeight: FontWeight.bold,
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       const SizedBox(
-                  //         width: 10,
-                  //       ),
-                  //       /////////////////////
 
-                  //       ////////////////
-
-                  //       Expanded(
-                  //         child: Container(
-                  //           width: 100,
-                  //           height: 100,
-                  //           decoration: BoxDecoration(
-                  //             borderRadius: BorderRadius.circular(10),
-                  //             color: Colors.white,
-                  //             boxShadow: [
-                  //               BoxShadow(
-                  //                   offset: const Offset(0, 3),
-                  //                   blurRadius: 7,
-                  //                   spreadRadius: 3.0,
-                  //                   color: Colors.grey.withOpacity(0.5)),
-                  //             ],
-                  //           ),
-                  //           child: Column(
-                  //             crossAxisAlignment: CrossAxisAlignment.center,
-                  //             mainAxisAlignment: MainAxisAlignment.center,
-                  //             children: [
-                  //               IconButton(
-                  //                 onPressed: () {
-                  //                   // Navigator.of(context).push(
-                  //                   //     MaterialPageRoute(builder: (context) {
-                  //                   //   return const MarketPlaceScreen();
-                  //                   // }));
-
-                  //                   //Get.to(() => const MarketPlaceScreen());
-                  //                 },
-                  //                 icon: Image.asset(
-                  //                   'assets/icons/icons-market-64.png',
-                  //                   fit: BoxFit.fill,
-                  //                 ),
-                  //               ),
-                  //               const Text(
-                  //                 'Camera',
-                  //                 style: TextStyle(
-                  //                   fontSize: 10,
-                  //                   fontWeight: FontWeight.bold,
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       const SizedBox(
-                  //         width: 10,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
+                  //Set image url
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: controllers.productImageController,
+                      style: pagetextFieldStyle,
+                      decoration: const InputDecoration(
+                        hintText: "/images/imagepath/etc.jpg",
+                        label: Text(
+                          "Image path link",
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Please enter a Valid product Image";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
 
                   // Save Button
                   SizedBox(
@@ -386,39 +313,35 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (formkeyaddnewproduct.currentState!.validate()) {
-                          if (kDebugMode) {
-                            print("Done");
+                          // if (kDebugMode) {
+                          //   print("Done");
+                          // }
+                          final product = Product(
+                            image: controllers.productImageController.text,
+                            title: controllers.productTitleController.text
+                                .toUpperCase(),
+                            description: controllers
+                                .productDescriptionController.text
+                                .toUpperCase(),
+                            productName: controllers.productNameController.text
+                                .toUpperCase(),
+                            productOwnersname: controllers
+                                .productOwnerNameController.text
+                                .toUpperCase(),
+                            price: double.parse(
+                                controllers.productPriceController.text),
+                            size: double.parse(
+                                controllers.productQuentityController.text),
+                            id: generateCustomID(Timestamp.now()),
+                            color: Colors.black,
+                            productCategory: selectedItem.toString(),
+                          );
 
-                            final product = Product(
-                              image: pickedImageFile.toString(),
-                              title: controllers.productTitleController.text
-                                  .toUpperCase(),
-                              description: controllers
-                                  .productDescriptionController.text
-                                  .toUpperCase(),
-                              productName: controllers
-                                  .productNameController.text
-                                  .toUpperCase(),
-                              productOwnersname: controllers
-                                  .productOwnerNameController.text
-                                  .toUpperCase(),
-                              price: double.parse(
-                                  controllers.productPriceController.text),
-                              size: double.parse(
-                                  controllers.productQuentityController.text),
-                              id: generateCustomID(Timestamp.now()),
-                              color: Colors.black,
-                              productCategory: selectedItem.toString(),
-                            );
-
-                            // Timestamp timestamp = Timestamp.now();
-                            // String customId = generateCustomID(timestamp);
-                            ProductController.instance
-                                .addNewProduct(customProductId, product);
-                          }
+                          ProductController.instance
+                              .addNewProduct(customProductId, product);
                         }
                       },
-                      child: const Text("Save Product"),
+                      child: const Text("Save Product "),
                     ),
                   ),
 
@@ -436,11 +359,30 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
 
   Future<void> _pickImage(ImageSource source) async {
     XFile? pickedFile = await ImagePicker().pickImage(source: source);
-    setState(() {
-      if (pickedFile != null) {
-        // Handle the selected/captured image here
-        pickedImageFile = XFile(pickedFile.path);
-      }
-    });
+
+    if (pickedFile != null) {
+      String imageurl = await uploadImageIntoFirebaseStorage(pickedFile);
+      setState(() {
+        pickedImageFile = imageurl;
+        controllers.productImageController.text = pickedImageFile.toString();
+        if (kDebugMode) {
+          print(pickedImageFile);
+        }
+      });
+    }
   }
+}
+
+Future<String> uploadImageIntoFirebaseStorage(XFile pickedFile) async {
+  //upload the image to firebase Storage
+  final imageRef = firebase_storage.FirebaseStorage.instance
+      .ref()
+      .child('images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+
+  final uploadTask = imageRef.putFile(File(pickedFile.path));
+  final imageurl = await (await uploadTask).ref.getDownloadURL();
+  if (kDebugMode) {
+    print(imageurl);
+  }
+  return imageurl;
 }

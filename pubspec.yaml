@@ -52,6 +52,7 @@ dependencies:
   flutter_svg: ^2.0.5
   image_picker: ^1.0.1
   gradle_properties: ^1.0.0
+  firebase_storage: ^11.2.5
  # google_sign_in: ^5.0.0
   
   

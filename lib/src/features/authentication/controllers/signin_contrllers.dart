@@ -24,14 +24,17 @@ class SignInController extends GetxController {
   Future<void> usersignInWithEmailandPassword(
       String email, String password) async {
     try {
-      await FirebaseAuth.instance
+      UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       Get.snackbar(
         "Login Successfully",
         "You have Login successfully to this App",
         backgroundColor: Colors.greenAccent,
       );
-      Get.offAll(() => const DashboardScreen());
+      Get.offAll(
+        () => const DashboardScreen(),
+        // arguments: userCredential.user, //pass user details for Dashboard Screen
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Get.snackbar("user-not-found", "This user cannot find in Database");

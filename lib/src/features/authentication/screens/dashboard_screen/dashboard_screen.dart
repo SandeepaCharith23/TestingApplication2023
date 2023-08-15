@@ -14,6 +14,8 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get user details from route arguments
+    // final UserModel user = Get.arguments;
     return Scaffold(
       appBar: const DashBoardAppBar(),
       body: SingleChildScrollView(

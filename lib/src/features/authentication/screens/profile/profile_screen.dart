@@ -1,6 +1,7 @@
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/constants/image_path.dart';
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
+import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/loging_screen/login_screen.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/profile/update_profile_screen.dart';
@@ -19,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final UserModel userModel = Get.arguments;
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
@@ -76,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               Text(
-                "User Name",
+                "userModel.firstName",
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               Text(

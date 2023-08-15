@@ -40,5 +40,6 @@ class ProductController extends GetxController {
     productNameController.clear();
     productPriceController.clear();
     productQuentityController.clear();
+    productImageController.clear();
   }
 }
