@@ -8,6 +8,9 @@ import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_s
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/search.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/top_products.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../models/user_model.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -15,7 +18,7 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Get user details from route arguments
-    // final UserModel user = Get.arguments;
+    //final user = Get.arguments;
     return Scaffold(
       appBar: const DashBoardAppBar(),
       body: SingleChildScrollView(
@@ -31,6 +34,7 @@ class DashboardScreen extends StatelessWidget {
               ),
 
               Text(
+                // user.firstName,
                 dashboardIntroductionSubTitle,
                 style: Theme.of(context).textTheme.titleMedium,
               ),

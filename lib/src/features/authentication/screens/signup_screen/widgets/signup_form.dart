@@ -233,6 +233,7 @@ class _SignUpScreenFormState extends State<SignUpScreenForm> {
                       passWord: controller.passwordController.text.trim(),
                       district: controller.districtName.text.trim(),
                       province: controller.districtName.text.trim(),
+                      userId: '',
                     );
 
                     SignUpController.instance
@@ -261,6 +262,7 @@ class _SignUpScreenFormState extends State<SignUpScreenForm> {
                       passWord: controller.passwordController.text.trim(),
                       district: controller.districtName.text.trim(),
                       province: controller.districtName.text.trim(),
+                      userId: '',
                     );
 
                     //print number

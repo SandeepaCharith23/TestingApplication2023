@@ -33,7 +33,7 @@ class SignInController extends GetxController {
       );
       Get.offAll(
         () => const DashboardScreen(),
-        // arguments: userCredential.user, //pass user details for Dashboard Screen
+        //arguments: userCredential.user, //pass user details for Dashboard Screen
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

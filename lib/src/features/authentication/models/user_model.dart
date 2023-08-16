@@ -7,16 +7,16 @@ class UserModel {
   final String passWord;
   final String province;
   final String district;
-  final String? userId;
+  late String? userId;
 
-  const UserModel({
+  UserModel({
     required this.firstName,
     required this.emailAddress,
     required this.phoneNumber,
     required this.passWord,
     required this.district,
     required this.province,
-    this.userId,
+    required this.userId,
   });
 
   toJson() {

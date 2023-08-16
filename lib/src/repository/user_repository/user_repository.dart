@@ -14,9 +14,12 @@ class UserRepository extends GetxController {
 
   //create a method -For creating a new User
   createUser(UserModel usermodel) async {
-    await _dbinstance
-        .collection("User")
-        .add(usermodel.toJson())
+    Future<String> userId = generateCutomUserId(Timestamp.now());
+    usermodel.userId = await userId;
+    final documentreference =
+        _dbinstance.collection("User").doc(usermodel.userId);
+    await documentreference
+        .set(usermodel.toJson())
         .whenComplete(() => Get.snackbar(
               titleUserAccountSuccessfullycreated,
               messageUserAccountSuccessfullycreated,
@@ -43,6 +46,7 @@ class UserRepository extends GetxController {
     final datasnapshotuser = await _dbinstance
         .collection("User")
         .where("EmailAddress", isEqualTo: currentuseremail)
+        .limit(1) //limit only one user which have emailaddress
         .get();
 
     //2.convert snapshot to Map using method in User model class
@@ -68,5 +72,12 @@ class UserRepository extends GetxController {
         .collection("User")
         .doc(userModel.firstName)
         .update(userModel.toJson());
+  }
+
+  Future<String> generateCutomUserId(Timestamp timestamp) async {
+    DateTime dateTime = timestamp.toDate();
+    String customProductId =
+        '${dateTime.year}${dateTime.month}${dateTime.day}${dateTime.hour}${dateTime.minute}${dateTime.second}';
+    return customProductId;
   }
 }
