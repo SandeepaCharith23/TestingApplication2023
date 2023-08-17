@@ -1,5 +1,5 @@
 import 'package:ecommerseapp2023/src/features/authentication/screens/my_shop/addnewproduct_screen.dart';
-import 'package:ecommerseapp2023/src/features/authentication/screens/my_shop/components/ShopProductDetailsTile.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/my_shop/components/shop_product_detailstile.dart';
 import 'package:flutter/material.dart';
 
 class MyShopScreen extends StatelessWidget {

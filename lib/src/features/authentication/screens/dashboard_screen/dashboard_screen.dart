@@ -8,9 +8,6 @@ import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_s
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/search.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/top_products.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../../models/user_model.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});

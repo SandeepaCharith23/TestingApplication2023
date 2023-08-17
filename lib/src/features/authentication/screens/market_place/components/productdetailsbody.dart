@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../constants/sizes.dart';
-import 'Itemcounterwith_favouritelable.dart';
+import 'itemcounterwith_favouritelable.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   final Product product;

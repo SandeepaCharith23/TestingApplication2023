@@ -1,7 +1,7 @@
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 
 import 'package:ecommerseapp2023/src/constants/text_string.dart';
-import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';
+
 import 'package:ecommerseapp2023/src/features/authentication/screens/profile/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
