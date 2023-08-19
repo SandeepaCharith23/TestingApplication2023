@@ -70,3 +70,5 @@ const String messageUserAccountSuccessfullycreated =
 const String titleUserAccountFailed = "Success";
 const String messageUserAccountFailed =
     "Something went wrong ,Please Try again Later";
+const String signUpWithMobileOTPsnackbarText =
+    "In this function we will send a OTP for your entered mobile phone number and verify that.";

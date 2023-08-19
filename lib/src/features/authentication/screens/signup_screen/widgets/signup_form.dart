@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
+import '../../../../../constants/text_string.dart';
+
 class SignUpScreenForm extends StatefulWidget {
   const SignUpScreenForm({
     Key? key,
@@ -218,7 +220,7 @@ class _SignUpScreenFormState extends State<SignUpScreenForm> {
             const SizedBox(
               height: 10,
             ),
-
+            //1.Sign with username and Password -Normal way
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -247,32 +249,35 @@ class _SignUpScreenFormState extends State<SignUpScreenForm> {
             const SizedBox(
               height: 10,
             ),
-            ////////////////////////////////////
-            SizedBox(
+
+            //2.Sign up with your Mobile Number Button-Mobile OTP verification
+            const SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  //5.First check the formkey had Validated
-                  if (_formkey.currentState!.validate()) {
-                    //3.create a User Model and pass it to controller
-                    final usermodel = UserModel(
-                      firstName: controller.firstNameController.text.trim(),
-                      emailAddress: controller.emailController.text.trim(),
-                      phoneNumber: controller.phoneNumberController.text.trim(),
-                      passWord: controller.passwordController.text.trim(),
-                      district: controller.districtName.text.trim(),
-                      province: controller.districtName.text.trim(),
-                      userId: '',
-                    );
+                onPressed: null,
+                // onPressed: () {
+                //   //5.First check the formkey had Validated
+                //   if (_formkey.currentState!.validate()) {
+                //     //3.create a User Model and pass it to controller
+                //     final usermodel = UserModel(
+                //       firstName: controller.firstNameController.text.trim(),
+                //       emailAddress: controller.emailController.text.trim(),
+                //       phoneNumber: controller.phoneNumberController.text.trim(),
+                //       passWord: controller.passwordController.text.trim(),
+                //       district: controller.districtName.text.trim(),
+                //       province: controller.districtName.text.trim(),
+                //       userId: '',
+                //     );
 
-                    //print number
-                    Get.snackbar("Phone", usermodel.phoneNumber);
+                //     //print number
+                //     Get.snackbar(
+                //         signUpWithMobileOTPsnackbarText, usermodel.phoneNumber);
 
-                    SignUpController.instance
-                        .createnewUserWithPhoneAuthentication(usermodel);
-                  }
-                },
-                child: const Text("Sign Up with Your Mobile Number"),
+                //     SignUpController.instance
+                //         .createnewUserWithPhoneAuthentication(usermodel);
+                //   }
+                // },
+                child: Text("Sign Up with Your Mobile Number"),
               ),
             ),
           ],
