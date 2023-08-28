@@ -311,7 +311,17 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 );
               } else if (snapshot.hasError) {
                 return Center(
-                  child: Text(snapshot.error.toString()),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const CircularProgressIndicator(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text("Wait for loading data..."),
+                      Text(snapshot.error.toString()),
+                    ],
+                  ),
                 );
               } else {
                 return const Center(
