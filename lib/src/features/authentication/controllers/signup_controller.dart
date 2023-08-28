@@ -21,6 +21,7 @@ class SignUpController extends GetxController {
 
   final userRepository = Get.put(UserRepository());
 
+  //Method-createnewUserWithPhoneAuthentication-create a new method for creating new user using sign in with Email and Password ,then User mobile phone number authentiaction
   Future<void> createnewUserWithPhoneAuthentication(UserModel userModel) async {
     //1.use the method which create in Authentication Repo
     await userRepository.createUser(userModel);
@@ -34,6 +35,7 @@ class SignUpController extends GetxController {
 
   /////////////////////////////////////////////////////////////
 
+  //Method-createnewUserWithEmailandPasswordAuthentication-method for creating new user with their email address and password
   Future<void> createnewUserWithEmailandPasswordAuthentication(
       UserModel userModel) async {
     //1.use the method which create in Authentication Repo
@@ -46,6 +48,7 @@ class SignUpController extends GetxController {
 
   ////////////////////////////////////////////////////////////////
 
+  //Method-registerNewUserfromPhoneAuthentication-method for mobile phone number authentication
   void registerNewUserfromPhoneAuthentication(UserModel userModel) {
     //use the method which create in Authentication Repo+verify phone number
     AuthenticationRepository.instance
@@ -53,7 +56,7 @@ class SignUpController extends GetxController {
   }
 
   //////////////////////////////////////////////////////////////////////
-
+  //Method-registerNewUserFromUsernameandPassword-method for creating new user using their emailaddress and password
   void registerNewUserFromUsernameandPassword(String email, String password) {
     //use the method which create in Authentication Repo
     try {

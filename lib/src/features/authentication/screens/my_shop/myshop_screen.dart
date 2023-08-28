@@ -21,6 +21,7 @@ class MyShopScreen extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Stack(
           children: [
+            //1.Tile which displayed product details of current user/Product owner
             SizedBox(
               // You can also use a Container with a fixed height instead of SizedBox
               height: MediaQuery.of(context).size.height,
@@ -37,6 +38,8 @@ class MyShopScreen extends StatelessWidget {
                 },
               ),
             ),
+
+            //2.Elevated Button-Add a new product to shop
             ElevatedButton(
               onPressed: () {
                 // Add button click functionality here

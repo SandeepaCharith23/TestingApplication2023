@@ -5,6 +5,8 @@ import 'package:ecommerseapp2023/src/constants/sizes.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/loging_screen/login_screen.dart';
 import 'package:ecommerseapp2023/src/features/authentication/screens/profile/update_profile_screen.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/profile/update_profile_screen_new.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

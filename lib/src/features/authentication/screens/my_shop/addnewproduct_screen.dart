@@ -172,6 +172,8 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       controller: controllers.productDescriptionController,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 4,
                       style: pagetextFieldStyle,
                       decoration: const InputDecoration(
                         hintText: "this plants is used for etc...",
@@ -228,6 +230,8 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       controller: controllers.productQuentityController,
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: false),
                       style: pagetextFieldStyle,
                       decoration: const InputDecoration(
                         hintText: "100.00",
@@ -377,7 +381,7 @@ Future<String> uploadImageIntoFirebaseStorage(XFile pickedFile) async {
   //upload the image to firebase Storage
   final imageRef = firebase_storage.FirebaseStorage.instance
       .ref()
-      .child('images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+      .child('products/images/${DateTime.now().millisecondsSinceEpoch}.jpg');
 
   final uploadTask = imageRef.putFile(File(pickedFile.path));
   final imageurl = await (await uploadTask).ref.getDownloadURL();

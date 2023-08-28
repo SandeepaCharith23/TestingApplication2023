@@ -24,7 +24,8 @@ class SignInController extends GetxController {
   Future<void> usersignInWithEmailandPassword(
       String email, String password) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
+      // UserCredential userCredential =
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       Get.snackbar(
         "Login Successfully",

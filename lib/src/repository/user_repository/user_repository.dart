@@ -6,13 +6,28 @@ import 'package:get/get.dart';
 import '../../constants/text_string.dart';
 
 class UserRepository extends GetxController {
-  //static instance of UserRepository
+  //Instance-static instance of UserRepository
   static UserRepository get instance => Get.find();
 
-  //create a Firebase Firestore instance
+  //Instance-create a Firebase Firestore instance
   final _dbinstance = FirebaseFirestore.instance;
 
-  //create a method -For creating a new User
+  //Instance-reactive varible which have user details
+  Rxn<UserModel> user = Rxn<UserModel>();
+
+  //   @override
+  // void onInit() {
+  //   super.onInit();
+  //   _dbinstance.authSta teChanges().listen((user) {
+  //     if (user == null) {
+  //       this.user.value = null;
+  //     } else {
+  //       this.user.value = UserModel(uid: user.uid, email: user.email);
+  //     }
+  //   });
+  // }
+
+  //Method-createUser-create a method -For creating a new User
   createUser(UserModel usermodel) async {
     Future<String> userId = generateCutomUserId(Timestamp.now());
     usermodel.userId = await userId;
@@ -40,7 +55,7 @@ class UserRepository extends GetxController {
     });
   }
 
-  //process-fetch Data from FirebaseDB-step2-Fetch single User Details
+  //Method-getSingleUserDetails-process-fetch Data from FirebaseDB-step2-Fetch single User Details
   Future<UserModel> getSingleUserDetails(String currentuseremail) async {
     //1.get the DataSnapshots of Users
     final datasnapshotuser = await _dbinstance
@@ -55,7 +70,7 @@ class UserRepository extends GetxController {
     return singleuserData;
   }
 
-  //process-fetch Data from FirebaseDB-step2-Fetch all USers  Details
+  //Method-getMultipleUserDetails-process-fetch Data from FirebaseDB-step2-Fetch all USers  Details
   Future<List<UserModel>> getMultipleUserDetails() async {
     //1.get the DataSnapshots of Users
     final datasnapshotsuser = await _dbinstance.collection("User").get();
@@ -66,14 +81,15 @@ class UserRepository extends GetxController {
     return multipleuserData;
   }
 
-  //create a method to update user details after user change own information
+  //Method-updateUserDetails-create a method to update user details after user change own information
   Future<void> updateUserDetails(UserModel userModel) async {
     await _dbinstance
         .collection("User")
-        .doc(userModel.firstName)
+        .doc(userModel.userId)
         .update(userModel.toJson());
   }
 
+  //Method-generateCutomUserId-Generate Custom User Id as primary key of data
   Future<String> generateCutomUserId(Timestamp timestamp) async {
     DateTime dateTime = timestamp.toDate();
     String customProductId =

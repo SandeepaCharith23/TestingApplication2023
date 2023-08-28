@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-import '../../../../../constants/text_string.dart';
-
 class SignUpScreenForm extends StatefulWidget {
   const SignUpScreenForm({
     Key? key,

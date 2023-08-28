@@ -1,67 +1,22 @@
-import 'package:ecommerseapp2023/src/constants/colors.dart';
-import 'package:ecommerseapp2023/src/constants/image_path.dart';
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
-import 'package:ecommerseapp2023/src/features/authentication/controllers/profile_controller.dart';
-import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
-class UpdateProfileScreen extends StatefulWidget {
-  const UpdateProfileScreen({super.key});
+import '../../../../constants/colors.dart';
+import '../../../../constants/image_path.dart';
+import '../../controllers/profile_controller.dart';
+import '../../models/user_model.dart';
 
-  @override
-  State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
-}
-
-class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
-  late TextEditingController firstNameController;
-  late TextEditingController emailAddressController;
-  late TextEditingController locationProvinceController;
-  late TextEditingController locationDistrictController;
-  late TextEditingController mobilePhoneController;
-  late TextEditingController passwordController;
-
-  late Future<UserModel?> userData;
-  late Stream<UserModel?> userModelStream;
-
-  @override
-  void initState() {
-    userData = ProfileController().getUserData();
-    userModelStream = Stream.fromFuture(userData);
-
-    super.initState();
-
-    // Initialize the controllers with initial values
-    firstNameController = TextEditingController();
-    emailAddressController = TextEditingController();
-    locationProvinceController = TextEditingController();
-    locationDistrictController = TextEditingController();
-    mobilePhoneController = TextEditingController();
-    passwordController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    // Dispose of the controllers when the widget is disposed
-    firstNameController.dispose();
-    emailAddressController.dispose();
-    locationProvinceController.dispose();
-    locationDistrictController.dispose();
-    mobilePhoneController.dispose();
-    passwordController.dispose();
-
-    super.dispose();
-  }
+class UpdateProfileScreenNew extends StatelessWidget {
+  const UpdateProfileScreenNew({super.key});
 
   @override
   Widget build(BuildContext context) {
     final profilecontroller = Get.put(ProfileController());
 
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -86,9 +41,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         //warp the Screen with a future builder -Display with values in the Future
         child: FutureBuilder(
           //pass the profile controller class-getUserData method
-          // future: profilecontroller.getUserData(),
-          future: userData,
-          // stream: userModelStream,
+          future: profilecontroller.getUserData(),
 
           builder: (context, snapshot) {
             if (kDebugMode) {
@@ -154,11 +107,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         child: Column(
                           children: [
                             TextFormField(
-                              controller: firstNameController,
-                              onChanged: (value) {
-                                value = firstNameController.text.toString();
-                              },
-                              //initialValue: userModeldata.firstName,
+                              //controller: firstNameController,
+                              initialValue: userModeldata.firstName,
                               decoration: const InputDecoration(
                                 hintText: "Enter your First Name",
                                 label: Text("First Name"),
@@ -169,11 +119,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                               height: 10,
                             ),
                             TextFormField(
-                              //initialValue: userModeldata.emailAddress,
-                              controller: emailAddressController,
-                              onChanged: (value) {
-                                value = emailAddressController.text.toString();
-                              },
+                              initialValue: userModeldata.emailAddress,
+                              // controller: profilecontroller.emailnewcontroller,
                               enabled: false,
                               decoration: const InputDecoration(
                                 hintText: "Cannot edit your email address",
@@ -187,10 +134,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             TextFormField(
                               // initialValue: userModeldata.province,
                               controller: locationProvinceController,
-                              onChanged: (value) {
-                                value =
-                                    locationDistrictController.text.toString();
-                              },
                               decoration: const InputDecoration(
                                 hintText: "Select your Location-Province",
                                 label: Text("Location-Province"),
@@ -213,11 +156,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                               height: 10,
                             ),
                             TextFormField(
-                              //initialValue: userModeldata.phoneNumber,
-                              controller: mobilePhoneController,
-                              onChanged: (value) {
-                                value = mobilePhoneController.text.toString();
-                              },
+                              initialValue: userModeldata.phoneNumber,
+                              // controller: profilecontroller.mobilenumbercontroller,
                               decoration: const InputDecoration(
                                 hintText: "Enter your Mobile phone Number",
                                 label: Text("Mobile Number"),
@@ -228,12 +168,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                               height: 10,
                             ),
                             TextFormField(
-                              // initialValue: userModeldata.passWord,
-                              controller: passwordController,
-                              onChanged: (value) {
-                                value = passwordController.text.toString();
-                              },
-                              enabled: false,
+                              initialValue: userModeldata.passWord,
+                              // controller: profilecontroller.passwordnewcontroller,
                               decoration: const InputDecoration(
                                 hintText: "Enter a suitable password",
                                 label: Text("Password"),
