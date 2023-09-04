@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:phone_number/phone_number.dart';
+
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class UpdateProfileScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   late Future<UserModel?> userData;
   late Stream<UserModel?> userModelStream;
 
-  late String pickedImageFile;
+  String? pickedImageFile;
 
   @override
   void initState() {
@@ -135,9 +135,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             height: 100,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
-                              child: const Image(
-                                image: AssetImage(profileImage),
-                              ),
+                              child: pickedImageFile != null
+                                  ? Image.network(pickedImageFile!)
+                                  : Image.asset(profileImage),
                             ),
                           ),
                           Positioned(
@@ -424,6 +424,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     }
     return imageurl;
   }
-}
 
-void displayDownloadedImageFromFirebase(String imageurl) {}
+  void displayDownloadedImageFromFirebase(String imageurl) {
+    setState(() {
+      //update the state with the downloaded image URL
+      pickedImageFile = imageurl;
+    });
+  }
+}
