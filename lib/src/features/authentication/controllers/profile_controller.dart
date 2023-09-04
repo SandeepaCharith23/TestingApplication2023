@@ -2,7 +2,6 @@ import 'package:ecommerseapp2023/src/features/authentication/models/user_model.d
 import 'package:ecommerseapp2023/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:ecommerseapp2023/src/repository/user_repository/user_repository.dart';
 
-
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
@@ -34,5 +33,6 @@ class ProfileController extends GetxController {
   //Method-updateUserRecord-method for  update user Details
   updateUserRecord(UserModel usermodel) async {
     await _userRepo.updateUserDetails(usermodel);
+    Get.back();
   }
 }

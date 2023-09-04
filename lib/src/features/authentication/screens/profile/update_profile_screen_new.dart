@@ -1,22 +1,42 @@
+import 'dart:io';
+
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/image_path.dart';
 import '../../controllers/profile_controller.dart';
 import '../../models/user_model.dart';
 
-class UpdateProfileScreenNew extends StatelessWidget {
+class UpdateProfileScreenNew extends StatefulWidget {
   const UpdateProfileScreenNew({super.key});
 
+  @override
+  State<UpdateProfileScreenNew> createState() => _UpdateProfileScreenNewState();
+}
+
+class _UpdateProfileScreenNewState extends State<UpdateProfileScreenNew> {
+  // Create controllers for text fields
+  final firstNameController = TextEditingController();
+  final emailAddressController = TextEditingController();
+  final locationProvinceController = TextEditingController();
+  final locationDistrictController = TextEditingController();
+  final mobilePhoneController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  late String pickedImageFile;
   @override
   Widget build(BuildContext context) {
     final profilecontroller = Get.put(ProfileController());
 
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -53,26 +73,20 @@ class UpdateProfileScreenNew extends StatelessWidget {
               if (snapshot.hasData) {
                 UserModel userModeldata = snapshot.data as UserModel;
 
-                //test editing controllers
-                final firstNameController =
-                    TextEditingController(text: userModeldata.firstName);
-                final emailAddressController =
-                    TextEditingController(text: userModeldata.emailAddress);
-                final locationProvinceController =
-                    TextEditingController(text: userModeldata.province);
-                final locationDistrictController =
-                    TextEditingController(text: userModeldata.district);
-                final mobilePhoneController =
-                    TextEditingController(text: userModeldata.phoneNumber);
-                final passwordController =
-                    TextEditingController(text: userModeldata.passWord);
+                //1. Set initial values for controllers
+                firstNameController.text = userModeldata.firstName;
+                locationProvinceController.text = userModeldata.province;
+                locationDistrictController.text = userModeldata.district;
+                mobilePhoneController.text = userModeldata.phoneNumber;
+                passwordController.text = userModeldata.passWord;
 
-                //load all data to display
+                //2.load all data to display
                 return Padding(
                   padding: const EdgeInsets.all(kDefaultpaddingSize),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      //Profile Image section
                       Stack(
                         children: [
                           SizedBox(
@@ -85,18 +99,50 @@ class UpdateProfileScreenNew extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: Container(
-                              width: 30,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: kprimaryColour1.withOpacity(0.8),
-                              ),
-                              child: const Icon(
-                                LineAwesomeIcons.camera,
+                          ElevatedButton(
+                            onPressed: () {
+                              // Show a dialog or use a button to prompt the user to choose between gallery or camera
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: const Text('Select Image Source'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        _pickImage(ImageSource.camera);
+                                      },
+                                      child: const Text('Camera'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        _pickImage(ImageSource.gallery);
+                                      },
+                                      child: const Text('Gallery'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            child: Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color: kprimaryColour1.withOpacity(0.8),
+                                ),
+                                child: const Icon(
+                                  LineAwesomeIcons.edit,
+                                ),
                               ),
                             ),
                           ),
@@ -183,7 +229,7 @@ class UpdateProfileScreenNew extends StatelessWidget {
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  //collect data-create a Data model
+                                  //1.collect data-create a Data model
                                   final userDataTree = UserModel(
                                     firstName:
                                         firstNameController.text.toString(),
@@ -200,11 +246,17 @@ class UpdateProfileScreenNew extends StatelessWidget {
                                     userId: userModeldata.userId,
                                   );
 
-                                  //update user records using Data Tree
+                                  //2.update user records using Data Tree and Redirect User
                                   await profilecontroller
                                       .updateUserRecord(userDataTree);
-                                  Get.snackbar("Update Succeess",
-                                      "Update Process is successful");
+
+                                  //3.Showing snackbar after updating task is completed
+                                  Get.snackbar(
+                                    "Update Succeess",
+                                    "Update Process is successful",
+                                    colorText: Colors.green,
+                                    backgroundColor: Colors.white,
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: kprimaryColour1,
@@ -265,4 +317,32 @@ class UpdateProfileScreenNew extends StatelessWidget {
       ),
     );
   }
-}
+
+  Future<void> _pickImage(ImageSource source) async {
+    XFile? pickedFile = await ImagePicker().pickImage(source: source);
+
+    if (pickedFile != null) {
+      String imageurl = await uploadImageIntoFirebaseStorage(pickedFile);
+      setState(() {
+        pickedImageFile = imageurl;
+        //controllers.productImageController.text = pickedImageFile.toString();
+        if (kDebugMode) {
+          print(pickedImageFile);
+        }
+      });
+    }
+  }
+
+  Future<String> uploadImageIntoFirebaseStorage(XFile pickedFile) async {
+    //upload the image to firebase Storage
+    final imageRef = firebase_storage.FirebaseStorage.instance.ref().child(
+        'profileImages/images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+
+    final uploadTask = imageRef.putFile(File(pickedFile.path));
+    final imageurl = await (await uploadTask).ref.getDownloadURL();
+    if (kDebugMode) {
+      print(imageurl);
+    }
+    return imageurl;
+  }
+} //end of the class

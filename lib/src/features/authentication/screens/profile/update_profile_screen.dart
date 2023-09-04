@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/constants/image_path.dart';
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
@@ -7,7 +9,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:phone_number/phone_number.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key});
@@ -26,6 +31,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   late Future<UserModel?> userData;
   late Stream<UserModel?> userModelStream;
+
+  late String pickedImageFile;
 
   @override
   void initState() {
@@ -122,6 +129,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     children: [
                       Stack(
                         children: [
+                          //Profile Picture
                           SizedBox(
                             width: 100,
                             height: 100,
@@ -135,15 +143,47 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           Positioned(
                             bottom: 0,
                             right: 0,
-                            child: Container(
-                              width: 30,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: kprimaryColour1.withOpacity(0.8),
-                              ),
-                              child: const Icon(
-                                LineAwesomeIcons.camera,
+                            child: GestureDetector(
+                              onTap: () {
+                                // Show a dialog or use a button to prompt the user to choose between gallery or camera
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Select Image Source'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          _pickImage(ImageSource.camera);
+                                        },
+                                        child: const Text('Camera'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                          _pickImage(ImageSource.gallery);
+                                        },
+                                        child: const Text('Gallery'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                width: 30,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color: kprimaryColour1.withOpacity(0.8),
+                                ),
+                                child: const Icon(
+                                  LineAwesomeIcons.camera,
+                                ),
                               ),
                             ),
                           ),
@@ -229,6 +269,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             ),
                             TextFormField(
                               // initialValue: userModeldata.passWord,
+                              obscureText: true,
                               controller: passwordController,
                               onChanged: (value) {
                                 value = passwordController.text.toString();
@@ -247,7 +288,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                               width: double.infinity,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  //collect data-create a Data model
+                                  //1.collect data-create a Data model
                                   final userDataTree = UserModel(
                                     firstName:
                                         firstNameController.text.toString(),
@@ -264,9 +305,19 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                     userId: userModeldata.userId,
                                   );
 
-                                  //update user records using Data Tree
+                                  //2.update user records using Data Tree and Redirect the User after Updating
                                   await profilecontroller
                                       .updateUserRecord(userDataTree);
+
+                                  //3.Clear the textFields
+                                  firstNameController.clear();
+                                  emailAddressController.clear();
+                                  mobilePhoneController.clear();
+                                  passwordController.clear();
+                                  locationProvinceController.clear();
+                                  locationDistrictController.clear();
+
+                                  //4.Display a Get Snackbar
                                   Get.snackbar("Update Succeess",
                                       "Update Process is successful");
                                 },
@@ -339,4 +390,40 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       ),
     );
   }
+
+  Future<void> _pickImage(ImageSource source) async {
+    XFile? pickedFile = await ImagePicker().pickImage(source: source);
+
+    if (pickedFile != null) {
+      String imageurl = await uploadImageIntoFirebaseStorage(pickedFile);
+      setState(() {
+        pickedImageFile = imageurl;
+        //controllers.productImageController.text = pickedImageFile.toString();
+        if (kDebugMode) {
+          print(pickedImageFile);
+        }
+      });
+    }
+  }
+
+  Future<String> uploadImageIntoFirebaseStorage(XFile pickedFile) async {
+    //upload the image to firebase Storage
+    final imageRef = firebase_storage.FirebaseStorage.instance.ref().child(
+        'profileImages/images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+
+    final uploadTask = imageRef.putFile(File(pickedFile.path));
+    final imageurl = await (await uploadTask).ref.getDownloadURL();
+    //get the url of the saved file in firebase and display a message to customer
+    Get.snackbar("Image saved to Database SuccessFully", imageurl);
+
+    //set that saved image to current profile image-display download url with image
+    displayDownloadedImageFromFirebase(imageurl);
+
+    if (kDebugMode) {
+      print(imageurl);
+    }
+    return imageurl;
+  }
 }
+
+void displayDownloadedImageFromFirebase(String imageurl) {}
