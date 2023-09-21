@@ -234,6 +234,7 @@ class _SignUpScreenFormState extends State<SignUpScreenForm> {
                       district: controller.districtName.text.trim(),
                       province: controller.districtName.text.trim(),
                       userId: '',
+                      userprofileImage: null,
                     );
 
                     SignUpController.instance

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:ecommerseapp2023/src/constants/colors.dart';
 import 'package:ecommerseapp2023/src/constants/image_path.dart';
+
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
 import 'package:ecommerseapp2023/src/features/authentication/controllers/profile_controller.dart';
 import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';
@@ -68,6 +69,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     final profilecontroller = Get.put(ProfileController());
 
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
+    bool isUpdating =
+        false; // Add this variable to track whether the update is in progress or not
 
     return Scaffold(
       appBar: AppBar(
@@ -137,7 +141,21 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                               borderRadius: BorderRadius.circular(100),
                               child: pickedImageFile != null
                                   ? Image.network(pickedImageFile!)
-                                  : Image.asset(profileImage),
+                                  : userModeldata.userprofileImage != null
+                                      ? Image.network(
+                                          userModeldata.userprofileImage!)
+                                      : Image.asset(profileImage1),
+
+                              // child: pickedImageFile != null
+                              //     ? Image.network(pickedImageFile!)
+                              //     : Image.network(
+                              //         userModeldata.userprofileImage ?? ""),
+
+                              // child: Image.network(
+                              //   userModeldata.userprofileImage ??
+                              //       "https://icons8.com/icon/42384/user",
+                              //   scale: 1.0,
+                              // ),
                             ),
                           ),
                           Positioned(
@@ -303,11 +321,18 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                     province: locationProvinceController.text
                                         .toString(),
                                     userId: userModeldata.userId,
+                                    userprofileImage: pickedImageFile ??
+                                        userModeldata.userprofileImage,
                                   );
 
                                   //2.update user records using Data Tree and Redirect the User after Updating
                                   await profilecontroller
                                       .updateUserRecord(userDataTree);
+
+                                  //update the isupload variable to false
+                                  setState(() {
+                                    isUpdating = false;
+                                  });
 
                                   //3.Clear the textFields
                                   firstNameController.clear();
@@ -320,6 +345,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                   //4.Display a Get Snackbar
                                   Get.snackbar("Update Succeess",
                                       "Update Process is successful");
+
+                                  //5.Redirect to  profile screen
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: kprimaryColour1,
@@ -329,6 +356,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                 child: const Text("Update profile"),
                               ),
                             ),
+                            if (isUpdating)
+                              const Center(
+                                child:
+                                    CircularProgressIndicator(), // Display the CircularProgressIndicator while updating
+                              ),
                             const SizedBox(
                               height: 10,
                             ),

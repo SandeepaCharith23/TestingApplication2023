@@ -8,6 +8,7 @@ class UserModel {
   final String province;
   final String district;
   late String? userId;
+  late String? userprofileImage;
 
   UserModel({
     required this.firstName,
@@ -17,6 +18,7 @@ class UserModel {
     required this.district,
     required this.province,
     required this.userId,
+    required this.userprofileImage,
   });
 
   toJson() {
@@ -28,6 +30,7 @@ class UserModel {
       "Province": province,
       "District": district,
       "UserId": userId,
+      "UserProfileImage": userprofileImage,
     };
   }
 
@@ -43,6 +46,7 @@ class UserModel {
       passWord: data["Password"],
       district: data["District"],
       province: data["Province"],
+      userprofileImage: data["UserProfileImage"],
     );
   }
 }

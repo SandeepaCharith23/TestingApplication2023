@@ -244,6 +244,7 @@ class _UpdateProfileScreenNewState extends State<UpdateProfileScreenNew> {
                                     province: locationProvinceController.text
                                         .toString(),
                                     userId: userModeldata.userId,
+                                    userprofileImage: '',
                                   );
 
                                   //2.update user records using Data Tree and Redirect User

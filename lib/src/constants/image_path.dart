@@ -38,3 +38,6 @@ const String dashbaordScreenShopBannerImage2 =
 
 const String profileImage =
     "assets/images/proflie_screen_images/profile_image.jpg";
+
+const String profileImage1 =
+    "assets/images/proflie_screen_images/profile_image01.png";
