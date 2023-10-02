@@ -1,6 +1,5 @@
 import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';
-import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/dashboard_screen.dart';
-import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/widgets/appbar.dart';
+
 import 'package:ecommerseapp2023/src/repository/authentication_repository/authentication_repository.dart';
 import 'package:ecommerseapp2023/src/repository/user_repository/user_repository.dart';
 
@@ -36,6 +35,6 @@ class ProfileController extends GetxController {
   updateUserRecord(UserModel usermodel) async {
     await _userRepo.updateUserDetails(usermodel);
     // Get.back();
-    Get.to(() => const DashboardScreen());
+    // Get.to(() => const DashboardScreen());
   }
 }

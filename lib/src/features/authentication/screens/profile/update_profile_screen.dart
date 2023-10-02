@@ -6,6 +6,7 @@ import 'package:ecommerseapp2023/src/constants/image_path.dart';
 import 'package:ecommerseapp2023/src/constants/sizes.dart';
 import 'package:ecommerseapp2023/src/features/authentication/controllers/profile_controller.dart';
 import 'package:ecommerseapp2023/src/features/authentication/models/user_model.dart';
+import 'package:ecommerseapp2023/src/features/authentication/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -302,65 +303,92 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             const SizedBox(
                               height: 10,
                             ),
-                            SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  //1.collect data-create a Data model
-                                  final userDataTree = UserModel(
-                                    firstName:
-                                        firstNameController.text.toString(),
-                                    emailAddress:
-                                        emailAddressController.text.toString(),
-                                    phoneNumber:
-                                        mobilePhoneController.text.toString(),
-                                    passWord:
-                                        passwordController.text.toString(),
-                                    district: locationDistrictController.text
-                                        .toString(),
-                                    province: locationProvinceController.text
-                                        .toString(),
-                                    userId: userModeldata.userId,
-                                    userprofileImage: pickedImageFile ??
-                                        userModeldata.userprofileImage,
-                                  );
+                            Stack(
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      //update the isupload variable to false
+                                      setState(() {
+                                        isUpdating = true;
+                                      });
 
-                                  //2.update user records using Data Tree and Redirect the User after Updating
-                                  await profilecontroller
-                                      .updateUserRecord(userDataTree);
+                                      //1.collect data-create a Data model
+                                      final userDataTree = UserModel(
+                                        firstName:
+                                            firstNameController.text.toString(),
+                                        emailAddress: emailAddressController
+                                            .text
+                                            .toString(),
+                                        phoneNumber: mobilePhoneController.text
+                                            .toString(),
+                                        passWord:
+                                            passwordController.text.toString(),
+                                        district: locationDistrictController
+                                            .text
+                                            .toString(),
+                                        province: locationProvinceController
+                                            .text
+                                            .toString(),
+                                        userId: userModeldata.userId,
+                                        userprofileImage: pickedImageFile ??
+                                            userModeldata.userprofileImage,
+                                      );
 
-                                  //update the isupload variable to false
-                                  setState(() {
-                                    isUpdating = false;
-                                  });
+                                      //2.update user records using Data Tree
 
-                                  //3.Clear the textFields
-                                  firstNameController.clear();
-                                  emailAddressController.clear();
-                                  mobilePhoneController.clear();
-                                  passwordController.clear();
-                                  locationProvinceController.clear();
-                                  locationDistrictController.clear();
+                                      await profilecontroller
+                                          .updateUserRecord(userDataTree);
 
-                                  //4.Display a Get Snackbar
-                                  Get.snackbar("Update Succeess",
-                                      "Update Process is successful");
+                                      //update the isupload variable to false
+                                      setState(() {
+                                        isUpdating = false;
+                                      });
 
-                                  //5.Redirect to  profile screen
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: kprimaryColour1,
-                                  side: BorderSide.none,
-                                  shape: const StadiumBorder(),
+                                      //3.Clear the textFields
+                                      firstNameController.clear();
+                                      emailAddressController.clear();
+                                      mobilePhoneController.clear();
+                                      passwordController.clear();
+                                      locationProvinceController.clear();
+                                      locationDistrictController.clear();
+
+                                      //4.Display a Get Snackbar
+                                      Get.snackbar("Update Succeess",
+                                          "Update Process is successful");
+
+                                      //5.Redirect user to main dashboard
+                                      Get.to(() => const DashboardScreen());
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: kprimaryColour1,
+                                      side: BorderSide.none,
+                                      shape: const StadiumBorder(),
+                                    ),
+                                    child: const Text("Update profile"),
+                                  ),
                                 ),
-                                child: const Text("Update profile"),
-                              ),
+                                if (isUpdating)
+                                  const Positioned.fill(
+                                    child: Expanded(
+                                      child: Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CircularProgressIndicator(),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text("Wait for loading data..."),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
-                            if (isUpdating)
-                              const Center(
-                                child:
-                                    CircularProgressIndicator(), // Display the CircularProgressIndicator while updating
-                              ),
                             const SizedBox(
                               height: 10,
                             ),
