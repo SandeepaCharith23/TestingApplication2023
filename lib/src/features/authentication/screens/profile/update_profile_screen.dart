@@ -74,6 +74,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     bool isUpdating =
         false; // Add this variable to track whether the update is in progress or not
 
+    bool isUpdatingProfilePicture = false;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -308,7 +310,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                 SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
-                                    onPressed: () async {
+                                    onPressed: // Disable the button when isUpdating is true
+                                        () async {
                                       //update the isupload variable to false
                                       setState(() {
                                         isUpdating = true;
@@ -453,16 +456,24 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   Future<void> _pickImage(ImageSource source) async {
     XFile? pickedFile = await ImagePicker().pickImage(source: source);
-
+    bool isUpdatingProfilePicture = true;
     if (pickedFile != null) {
+      if (isUpdatingProfilePicture) {
+        Get.snackbar("Waiting for isUpdatingProfilePicture", "message");
+      }
+
       String imageurl = await uploadImageIntoFirebaseStorage(pickedFile);
+
       setState(() {
         pickedImageFile = imageurl;
+        isUpdatingProfilePicture = false;
         //controllers.productImageController.text = pickedImageFile.toString();
         if (kDebugMode) {
           print(pickedImageFile);
         }
       });
+    } else {
+      Get.snackbar("You haven't choose a Image", "message");
     }
   }
 
@@ -472,7 +483,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         'profileImages/images/${DateTime.now().millisecondsSinceEpoch}.jpg');
 
     final uploadTask = imageRef.putFile(File(pickedFile.path));
+
     final imageurl = await (await uploadTask).ref.getDownloadURL();
+
     //get the url of the saved file in firebase and display a message to customer
     Get.snackbar("Image saved to Database SuccessFully", imageurl);
 
